@@ -4,10 +4,9 @@
                     <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3>
                 </div>
                 <?php 
-                    //define(LIB_DIR, './lib/');
-                    //require_once(LIB_DIR . 'config.php');
-					
-					require_once(__DIR__.'/config.php');
+
+					          require_once(__DIR__.'/config.php');
+
                     $id = $_SESSION['id'];
                     $sql = "SELECT * FROM user JOIN access_control USING(ac_id) WHERE us_id='$id'";
                     $query = $conn->query($sql);

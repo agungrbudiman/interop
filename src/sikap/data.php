@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <?php 
-                            define(LIB_DIR, './lib/');
+                            #define('LIB_DIR', './lib/');
                             require_once(LIB_DIR . 'config.php');
 
                             if (isset($_POST['add'])) {

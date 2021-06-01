@@ -1,4 +1,5 @@
 <?php 
+
 	if(isset($_GET['page'])){
 		$page = $_GET['page']; 
 	}else{
@@ -11,9 +12,9 @@
 			require_once "data.php";
 			break;
 
-		case 'data-add':
-			require_once "data-add.php";
-			break;
+			case 'data-add':
+				require_once "data-add.php";
+				break;
 
 		case 'data-edit':
 			require_once "data-edit.php";
@@ -34,5 +35,9 @@
 		default:
 			require_once "index-content.php";
 			break;
+		}		
+	}
+	else {
+		require_once "index-content.php";
 	}
 ?>
