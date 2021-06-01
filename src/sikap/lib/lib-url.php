@@ -34,10 +34,6 @@
 			
 		default:
 			require_once "index-content.php";
-			break;
-		}		
-	}
-	else {
-		require_once "index-content.php";
+			break;	
 	}
 ?>

@@ -7,11 +7,11 @@
 		//require_once 'lib/lib-plugins.php';
 		$output = ob_get_flush(); // ob_get_clean() if you want to suppress the output
 
-		if(empty($output)) {
-			echo 'Nothing interesting here!';
-		} else {
-			echo 'Something interesting here !';
-		}		
+		// if(empty($output)) {
+		// 	echo 'Nothing interesting here!';
+		// } else {
+		// 	echo 'Something interesting here !';
+		// }		
 	?>
 	
 </head>
