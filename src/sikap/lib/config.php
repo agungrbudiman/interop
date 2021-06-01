@@ -1,9 +1,9 @@
 <?php
-	$host       = "127.0.0.1";
+	$host       = "localhost";
 	$username 	= "root";
 	$password 	= "";
 	$dbname 	= "sikap";
-	$base_url   = "http://localhost/sikap/";
+	$base_url   = "http://localhost/github/src/sikap/";
 
 	try {
 	    $conn = new PDO("mysql:host=$host;dbname=$dbname",$username,$password);
