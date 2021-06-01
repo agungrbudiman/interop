@@ -1,12 +1,8 @@
 <?php 
 
-	if(isset($_GET['page'])){
-		$page = $_GET['page']; 
-	}else{
-		$page = "Page tidak diset di Method GET";
-	}
-	
-	
+if(isset($_GET['page'])){
+	$page = $_GET['page']; 
+
 	switch ($page) {
 /*		case 'data':
 			require_once "data.php";
