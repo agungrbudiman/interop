@@ -17,7 +17,7 @@
                     <div class="col-md-12">
                         <div class="white-box">
                         	<?php 
-			                    define(LIB_DIR, './lib/');
+			                    #define('LIB_DIR', './lib/');
 			                    require_once(LIB_DIR . 'config.php'); 
 			                    $id = $_SESSION['id'];
 			                    $sql = "SELECT * FROM user JOIN access_control USING(ac_id) WHERE us_id='$id'";

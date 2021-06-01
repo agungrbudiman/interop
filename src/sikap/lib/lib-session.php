@@ -1,5 +1,5 @@
 <?php 
-	define(LIB_DIR, './lib/');
+	define('LIB_DIR', './lib/');
 	require_once(LIB_DIR . 'config.php');
 
 	session_start();
