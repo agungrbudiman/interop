@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php require_once 'lib/lib-plugins.php'; ?> 
+    <?php
+		ob_start();
+		require_once(__DIR__.'/lib/lib-plugins.php');
+		//require_once 'lib/lib-plugins.php';
+		$output = ob_get_flush(); // ob_get_clean() if you want to suppress the output
+
+		if(empty($output)) {
+			echo 'Nothing interesting here!';
+		} else {
+			echo 'Something interesting here !';
+		}		
+	?>
+	
 </head>
 <body>
     <section id="wrapper" class="new-login-register">

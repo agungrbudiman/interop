@@ -1,7 +1,9 @@
 <?php
   session_start();
-  define(LIB_DIR, './lib/');
-  require_once(LIB_DIR . 'config.php');
+  //define(LIB_DIR, './lib/');
+  //require_once(LIB_DIR . 'config.php');
+  
+  require_once(__DIR__.'/lib/config.php');
 
   $username = mysqli_real_escape_string($conn, $_POST['username']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);

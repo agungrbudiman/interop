@@ -3,7 +3,7 @@
 	$username 	= "root";
 	$password 	= "";
 	$dbname 	= "sikap";
-	$base_url   = "http://localhost/sikap/";
+	$base_url   = "http://localhost/interop/src/sikap/";
 
 	try {
 	    $conn = new PDO("mysql:host=$host;dbname=$dbname",$username,$password);

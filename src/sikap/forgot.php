@@ -37,8 +37,10 @@
 <?php
     if (isset($_POST['reset'])) {
         include "phpmailer/classes/class.phpmailer.php";
-        define(LIB_DIR, './lib/');
-        require_once(LIB_DIR . 'config.php');
+        //define(LIB_DIR, './lib/');
+        //require_once(LIB_DIR . 'config.php');
+		
+		require_once(__DIR__.'/lib/config.php');
         
         $email_reset = $_POST['email-reset'];
         $sql = "SELECT * FROM user WHERE us_email='$email_reset'";

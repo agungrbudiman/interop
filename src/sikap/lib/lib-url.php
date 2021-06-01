@@ -1,7 +1,13 @@
 <?php 
-	$page = $_GET['page'];
+	if(isset($_GET['page'])){
+		$page = $_GET['page']; 
+	}else{
+		$page = "Page tidak diset di Method GET";
+	}
+	
+	
 	switch ($page) {
-		case 'data':
+/*		case 'data':
 			require_once "data.php";
 			break;
 
@@ -11,6 +17,10 @@
 
 		case 'data-edit':
 			require_once "data-edit.php";
+			break;
+*/		
+		case 'kehadiran':
+			require_once "kehadiran.php";
 			break;
 			
 		case 'forgot':
