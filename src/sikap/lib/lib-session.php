@@ -1,6 +1,6 @@
 <?php 
-	define('LIB_DIR', './lib/');
-	require_once(LIB_DIR . 'config.php');
+
+	require_once(__DIR__.'/config.php');
 
 	session_start();
 	if(empty($_SESSION['us_username']))

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2021 at 01:39 PM
--- Server version: 5.6.46
--- PHP Version: 5.6.36
+-- Generation Time: Jun 01, 2021 at 12:42 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.2.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -43,6 +42,30 @@ INSERT INTO `access_control` (`ac_id`, `ac_desc`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kehadiran`
+--
+
+CREATE TABLE `kehadiran` (
+  `us_id` varchar(100) NOT NULL,
+  `tanggal` varchar(100) NOT NULL,
+  `jam_masuk` varchar(100) NOT NULL,
+  `jam_keluar` varchar(100) NOT NULL,
+  `ishoma` varchar(100) NOT NULL,
+  `kekurangan` varchar(100) NOT NULL,
+  `keterangan` varchar(100) NOT NULL,
+  `id_kehadiran` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kehadiran`
+--
+
+INSERT INTO `kehadiran` (`us_id`, `tanggal`, `jam_masuk`, `jam_keluar`, `ishoma`, `kekurangan`, `keterangan`, `id_kehadiran`) VALUES
+('1', '01-06-2021', '07:30', '16:45', '01:00', '', 'Hadir', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -73,6 +96,12 @@ ALTER TABLE `access_control`
   ADD PRIMARY KEY (`ac_id`);
 
 --
+-- Indexes for table `kehadiran`
+--
+ALTER TABLE `kehadiran`
+  ADD PRIMARY KEY (`id_kehadiran`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -88,6 +117,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `access_control`
   MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `kehadiran`
+--
+ALTER TABLE `kehadiran`
+  MODIFY `id_kehadiran` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`

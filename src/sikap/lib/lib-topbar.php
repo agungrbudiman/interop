@@ -14,9 +14,13 @@
                     <li><a href="javascript:void(0)" class="open-close waves-effect waves-light"><i class="ti-menu"></i></a></li>
                 </ul>
                 <?php 
-                    define(LIB_DIR, './lib/');
-                    require_once(LIB_DIR . 'config.php'); 
-                    $id = $_SESSION['id'];
+                    
+                    
+					//define(LIB_DIR, './lib/');
+					//require_once(LIB_DIR . 'config.php');
+					require_once(__DIR__.'/config.php');
+					
+					$id = $_SESSION['id'];
                     $sql = "SELECT * FROM user JOIN access_control USING(ac_id) WHERE us_id='$id'";
                     $query = $conn->query($sql);
                     $data = $query->fetch(PDO::FETCH_OBJ);
