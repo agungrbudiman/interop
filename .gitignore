@@ -1,1 +1,4 @@
 .DS_Store
+src/sikap/lib/config.php
+
+src/sikap/lib/lib-plugins.php
