@@ -31,6 +31,10 @@
 		case 'reset':
 			require_once "reset.php";
 			break;
+
+		case 'cuti':
+			require_once "cuti.php";
+			break;
 			
 		default:
 			require_once "index-content.php";
