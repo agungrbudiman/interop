@@ -25,34 +25,227 @@
                                         require_once(__DIR__.'/lib/config.php');
                                         if (isset($_GET['id'])) {
                                             $id = $_GET['id'];
-                                            $sql = "SELECT * FROM data WHERE dt_id='$id'";
+                                            $sql = "SELECT * FROM pegawai WHERE pe_id='$id'";
                                             $query = $conn->query($sql);
                                             $edit = $query->fetch(PDO::FETCH_OBJ);
                                         }
                                     ?>
                                     <form method="post" action="data">
-                                        <input type="hidden" name="dt_id" value="<?php echo $edit->dt_id;?>">
+                                        <input type="hidden" name="pe_id" value="<?php echo $edit->pe_id;?>">
                                         <div class="form-group">
-                                            <label>Nama</label>
-                                            <input type="text" name="nama" class="form-control" value="<?php echo $edit->dt_name; ?>">
+                                            <label class="col-sm-2">Nama</label>
+                                            <div class="col-sm-10"><input type="text" name="nama" class="form-control" value="<?php echo $edit->pe_nama; ?>"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>IPK (3.00-4.00)</label>
-                                            <input type="number" name="ipk" step="0.01" min="3.00" max="4.00" class="form-control" value="<?php echo $edit->dt_ipk; ?>">
+                                            <label class="col-sm-2">NIP</label>
+                                            <div class="col-sm-10"><input type="text" name="nip" class="form-control" value="<?php echo $edit->pe_nip; ?>"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nilai Karya Tulis Ilmiah (0-100)</label>
-                                            <input type="number" name="kti" step="1" min="0" max="100" class="form-control" value="<?php echo $edit->dt_kti; ?>">
+                                            <label class="col-sm-2">Pangkat dan Golongan Ruang</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="pangkat">
+                                                    <?php
+                                                        require_once(__DIR__.'/lib/config.php');
+                                                        $sql = "SELECT*FROM pangkat";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            if ($edit->pa_id == $data->pa_id) {
+                                                                echo '
+                                                                <option value='.$data->pa_id.' selected>'.$data->pa_keterangan.'</option>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo ' 
+                                                                <option value='.$data->pa_id.'>'.$data->pa_keterangan.'</option>
+                                                                ';
+                                                            }  
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
+                                        </div>     
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Tempat Lahir</label>
+                                            <div class="col-sm-10"><input type="text" name="tempat-lahir" class="form-control" value="<?php echo $edit->pe_tempat_lahir; ?>"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Skor TOEFL (420-677)</label>
-                                            <input type="number" name="toefl" step="1" min="420" max="677" class="form-control" value="<?php echo $edit->dt_toefl; ?>">
+                                            <label class="col-sm-2">Tanggal Lahir</label>
+                                            <div class="col-sm-10"><input type="date" name="tanggal-lahir" class="form-control" value="<?php echo $edit->pe_tanggal_lahir; ?>"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Total Prestasi (0-130)</label>
-                                            <input type="number" name="prestasi" step="1" min="0" max="130" class="form-control" value="<?php echo $edit->dt_prestasi; ?>">
+                                            <label class="col-sm-3">Jenis Kelamin</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Laki-laki">Laki-laki</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Perempuan">Perempuan</label>
+                                            <br>
                                         </div>
-                                        <button type="submit" name="edit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Agama</label>
+                                            <div class="col-sm-10">
+                                            <select class="form-control" name="agama">
+                                               <?php
+                                                    $sql = "SELECT*FROM agama";
+                                                    $query = $conn->query($sql);
+                                                    while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                        echo '
+                                                        <option value='.$data->ag_id.'>'.$data->ag_keterangan.'</option>
+                                                        ';
+                                                    }
+                                                ?>
+                                            </select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Status Perkawinan</label>
+                                            <div class="col-sm-10">
+                                            <select class="form-control" name="status">
+                                                <?php
+                                                    $sql = "SELECT*FROM status";
+                                                    $query = $conn->query($sql);
+                                                    while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                        if ($edit->st_id == $data->st_id) {
+                                                            echo '
+                                                            <option value='.$data->st_id.' selected>'.$data->st_keterangan.'</option>
+                                                            ';
+                                                        }
+                                                        else{
+                                                            echo ' 
+                                                            <option value='.$data->st_id.'>'.$data->st_keterangan.'</option>
+                                                            ';
+                                                        }  
+                                                    }
+                                                ?>
+                                            </select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">No.HP</label>
+                                            <div class="col-sm-10"><input type="text" name="no-hp" class="form-control" value="<?php echo $edit->pe_no_hp; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Email</label>
+                                            <div class="col-sm-10"><input type="email" name="email" class="form-control" value="<?php echo $edit->pe_email; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">No BPJS</label>
+                                            <div class="col-sm-10"><input type="text" name="no-bpjs" class="form-control" value="<?php echo $edit->pe_no_bpjs; ?>"></div>
+                                            <br><br>
+                                        </div>   
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Provinsi</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="provinsi" id="provinsi">
+                                                <?php
+                                                    $sql = "SELECT*FROM provinsi LEFT JOIN pegawai USING(pr_id)";
+                                                    $query = $conn->query($sql);
+                                                    while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                        if ($edit->pr_id == $data->pr_id) {
+                                                            echo '
+                                                            <option value='.$data->pr_id.' selected>'.$data->pr_nama.'</option>
+                                                            ';
+                                                        }
+                                                        else{
+                                                            echo ' 
+                                                            <option value='.$data->pr_id.'>'.$data->pr_nama.'</option>
+                                                            ';
+                                                        }  
+                                                    }
+                                                ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Kota/Kabupaten</label>
+                                            <div class="col-sm-10">          
+                                                <select class="form-control" name="kabupaten" id="kabupaten">
+                                                    <?php
+                                                        $sql = "SELECT*FROM kabupaten LEFT JOIN pegawai USING(kb_id)";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            if ($edit->kb_id == $data->kb_id) {
+                                                                echo '
+                                                                <option value='.$data->kb_id.' selected>'.$data->kb_nama.'</option>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo ' 
+                                                                <option value='.$data->kb_id.'>'.$data->kb_nama.'</option>
+                                                                ';
+                                                            }  
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Kecamatan</label>
+                                            <div class="col-sm-10">          
+                                                <select class="form-control" name="kecamatan" id="kecamatan">
+                                                    <?php
+                                                        $sql = "SELECT*FROM kecamatan LEFT JOIN pegawai USING(kc_id)";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            if ($edit->kc_id == $data->kc_id) {
+                                                                echo '
+                                                                <option value='.$data->kc_id.' selected>'.$data->kc_nama.'</option>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo ' 
+                                                                <option value='.$data->kc_id.'>'.$data->kc_nama.'</option>
+                                                                ';
+                                                            }  
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Kelurahan</label>
+                                            <div class="col-sm-10">          
+                                                <select class="form-control" name="kelurahan" id="kelurahan">
+                                                    <?php
+                                                        $sql = "SELECT*FROM kelurahan LEFT JOIN pegawai USING(kl_id)";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            if ($edit->kl_id == $data->kl_id) {
+                                                                echo '
+                                                                <option value='.$data->kl_id.' selected>'.$data->kl_nama.'</option>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo ' 
+                                                                <option value='.$data->kl_id.'>'.$data->kl_nama.'</option>
+                                                                ';
+                                                            }  
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Alamat</label>
+                                            <div class="col-sm-10"><input type="text" name="alamat" class="form-control" value="<?php echo $edit->pe_alamat; ?>"></div>
+                                            <br><br>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Hobi</label>
+                                            <div class="col-sm-10"><input type="text" name="hobi" class="form-control" value="<?php echo $edit->pe_hobi; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <button type="submit" name="edit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
                                         <a href="data" class="btn btn-inverse waves-effect waves-light">Cancel</a>
                                     </form>
                                 </div>
