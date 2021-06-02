@@ -39,7 +39,8 @@
                                         $sql = "SELECT * FROM cuti ORDER BY id DESC";
                                         $result = $conn->query($sql);
                                         while ($row = $result->fetch()) {
-                                            echo "<tr> <td>" . $row['jenis_cuti'] . "</td>" .
+                                            $sql = "SELECT jenis_cuti.value FROM cuti JOIN jenis_cuti ON jenis_cuti.id = cuti.jenis_cuti WHERE jenis_cuti.id=" . $row['jenis_cuti'];
+                                            echo "<tr> <td>" . $conn->query($sql)->fetch()['value'] . "</td>" .
                                                 "<td>" . $row['saldo'] . "</td>" .
                                                 "<td>" . $row['durasi'] . "</td>" .
                                                 "<td>" . $row['cuti_start'] . "</td>" .
