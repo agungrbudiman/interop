@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 12:34 AM
+-- Generation Time: Jun 02, 2021 at 11:53 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -7830,6 +7830,30 @@ INSERT INTO `kecamatan` (`kc_id`, `kb_id`, `kc_nama`) VALUES
 ('9471021', '9471', 'HERAM'),
 ('9471030', '9471', 'JAYAPURA SELATAN'),
 ('9471040', '9471', 'JAYAPURA UTARA');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keluarga`
+--
+
+CREATE TABLE `keluarga` (
+  `ke_id` int(11) NOT NULL,
+  `pe_id` int(11) NOT NULL,
+  `ke_nama` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ta_id` int(11) NOT NULL,
+  `ke_jenis_kelamin` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `ke_tanggal_lahir` date NOT NULL,
+  `ke_tanggal_menikah` date NOT NULL,
+  `ke_tunjangan` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `keluarga`
+--
+
+INSERT INTO `keluarga` (`ke_id`, `pe_id`, `ke_nama`, `ta_id`, `ke_jenis_kelamin`, `ke_tanggal_lahir`, `ke_tanggal_menikah`, `ke_tunjangan`) VALUES
+(1, 1, 'Sulistyowati, S.E.', 1, 'Perempuan', '1988-11-16', '2015-06-09', 'Ya');
 
 -- --------------------------------------------------------
 
@@ -66599,12 +66623,31 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`pe_id`, `pe_nama`, `pe_nip`, `pa_id`, `pe_tempat_lahir`, `pe_tanggal_lahir`, `pe_jenis_kelamin`, `ag_id`, `st_id`, `pe_no_hp`, `pe_email`, `pe_no_bpjs`, `pr_id`, `kb_id`, `kc_id`, `kl_id`, `pe_alamat`, `pe_hobi`) VALUES
-(1, 'Tes', '123', 4, 'Yogyakarta', '0000-00-00', 'Laki-laki', 4, 2, '080', 'tes@gmail.com', '', '34', '3404', '3404100', '3404100003', 'perum abc', 'membaca'),
-(2, 'Tesa', '1234', 3, 'Yogyakarta', '0000-00-00', 'Perempuan', 1, 1, '080', 'tesa@gmail.com', '123', '21', '2102', '2102064', '2102064004', 'perum abc', 'membaca'),
-(3, 'Zaza', '321', 8, 'Yogyakarta', '0000-00-00', 'Laki-laki', 1, 1, '080', 'zaza@gmail.com', '123', '34', '3404', '3404080', '3404080004', 'perum abc', 'membaca'),
-(4, 'abc', '123', 9, 'Yogyakarta', '0000-00-00', 'Perempuan', 2, 1, '080', 'abc@gmail.com', '123', '32', '3213', '3213140', '3213140018', 'perum abc', 'membaca'),
-(5, 'q', '123', 1, 'Yogyakarta', '0000-00-00', 'Laki-laki', 1, 1, '080', 'tes@gmail.com', '123', '15', '1508', '1508032', '1508032006', 'perum abc', 'membaca'),
-(6, 'w', '123', 1, 'Yogyakarta', '1990-02-06', 'Laki-laki', 1, 1, '080', 'tes@gmail.com', '123', '36', '3602', '3602121', '3602121006', 'perum abc', 'membaca');
+(1, 'Agung Bahtiar, S.H., M.H.', '2101234567890000001', 8, 'Jakarta', '1980-07-10', 'Laki-laki', 1, 1, '081234567001', 'agungbahtiar@gmail.com', '2021000100010001', '31', '3174', '3174020', '3174020007', 'Jl Kedoya No.101', 'Membaca'),
+(2, 'Drs. Puji Hananto,  M.Pd.', '2101234567890000002', 8, 'Bandung', '1975-12-20', 'Laki-laki', 1, 1, '081234567002', 'pujihananto@gmail.com', '2021000100010002', '32', '3273', '3273141', '3273141002', 'RT 001 / RW 002, Perum Bakti Putra No.22', 'Bermain musik'),
+(3, 'Diana Purbasari, S.E., M.Si.', '2101234567890000003', 7, 'Depok', '1985-06-19', 'Perempuan', 1, 1, '081234567003', 'dianapurbasari@gmail.com', '2021000100010003', '31', '3171', '3171080', '3171080001', 'Jl Kalibata No.88', 'Yoga'),
+(4, 'Budi Ardiyanto, S.H., M.H.', '2101234567890000004', 7, 'Jakarta', '1979-03-13', 'Laki-laki', 1, 1, '081234567004', 'budiardiyanto@gmail.com', '2021000100010004', '31', '3172', '3172050', '3172050006', 'Perum Mekarsari No.65', 'Fotografi'),
+(5, 'Kurnia Ekawati, S.E., M.Si.', '2101234567890000005', 7, 'Jakarta Selatan', '1985-08-11', 'Perempuan', 2, 2, '081234567005', 'kurniaekawati@gmail.com', '2021000100010005', '31', '3171', '3171060', '3171060010', 'RT 007 / RW 007, Perum Senayan No.90', 'Berenang'),
+(6, 'Suryadi Kencana, S.H., M.M.', '2101234567890000006', 6, 'Jakarta Barat', '1983-04-02', 'Laki-laki', 1, 1, '081234567006', 'suryadikencana@gmail.com', '2021000100010006', '31', '3174', '3174050', '3174050007', 'Jl Muara Angke VII No.132', 'Menulis'),
+(7, 'Fahmi Akbar, S.IP., M.Si.', '2101234567890000007', 6, 'Jakarta Utara', '1984-11-26', 'Laki-laki', 5, 2, '081234567007', 'fahmiakbar@gmail.com', '2021000100010007', '31', '3175', '3175050', '3175050002', 'Perum Adikarya No.55', 'Traveling'),
+(8, 'Aryani Dwi, S.E., M.Si.', '2101234567890000008', 6, 'Yogyakarta', '1988-10-13', 'Perempuan', 2, 1, '081234567008', 'aryanidwi@gmail.com', '2021000100010008', '31', '3173', '3173040', '3173040002', 'RT 005 / RW 002, Jl. Kampung Rawa No.10', 'Memasak'),
+(9, 'Aruni Setyowati, S.E., M.Si.', '2101234567890000009', 6, 'Surabaya', '1989-02-07', 'Perempuan', 1, 2, '081234567009', 'arunisetyowati@gmail.com', '2021000100010009', '31', '3171', '3171010', '3171010005', 'Perum Asana Mulia No.09', 'Merajut'),
+(10, 'Ahmad Barudin, S.Sos.', '2101234567890000010', 5, 'Magelang', '2021-06-13', 'Laki-laki', 1, 2, '081234567010', 'ahmadbarudin@gmail.com', '2021000100010010', '31', '3101', '3101020', '3101020001', 'Jl Merbabu III No.37', 'Bermain musik'),
+(11, 'Kariadi Putra, S.Sos, M.Si.', '2101234567890000011', 5, 'Semarang', '1987-11-30', 'Laki-laki', 2, 2, '081234567011', 'kariadiputra@gmail.com', '2021000100010011', '31', '3172', '3172030', '3172030001', 'RT 009 / RW 001, Jl Surya Kencana IV', 'Fotografi'),
+(12, 'Putri Sekar, S.IP, M.Si.', '2101234567890000012', 5, 'Sragen', '1989-01-02', 'Perempuan', 2, 2, '081234567012', 'putrisekar@gmail.com', '2021000100010012', '31', '3173', '3173060', '3173060002', 'Jl Permata Hati No.12', 'Melukis'),
+(13, 'Laila Salbiyanti, S.H., M.Si.', '2101234567890000013', 5, 'Solo', '1986-09-15', 'Perempuan', 1, 1, '081234567013', 'lailasalbiyanti@gmail.com', '2021000100010013', '31', '3101', '3101010', '3101010001', 'RT 013 / RW 001, Jl Mataram II', 'Memasak'),
+(14, 'Nurhayati, S.Sos.', '2101234567890000014', 5, 'Malang', '1983-03-26', 'Perempuan', 1, 1, '081234567014', 'nurhayati@gmail.com', '2021000100010014', '31', '3175', '3175040', '3175040004', 'Jl Sumber Abadi VII No.99', 'Membaca'),
+(15, 'Ilham Iswandi, S.IP.', '2101234567890000015', 4, 'Klaten', '1987-10-04', 'Laki-laki', 3, 2, '081234567015', 'ilhamirwandi@gmail.com', '2021000100010015', '31', '3173', '3173020', '3173020003', 'Jl Bumi Permai No.02', 'Fotografi'),
+(16, 'Rosilawati, S.Sos.', '2101234567890000016', 4, 'Surabaya', '1985-07-31', 'Perempuan', 1, 1, '081234567016', 'rosilawati@gmail.com', '2021000100010016', '31', '3174', '3174070', '3174070006', 'Perum Bale Hinggil No.77', 'Merajut'),
+(17, 'Eko Putra, S.H.', '2101234567890000017', 4, 'Malang', '1986-09-10', 'Laki-laki', 1, 1, '081234567017', 'ekoputra@gmail.com', '2021000100010017', '31', '3174', '3174080', '3174080003', 'RT 001 / RW 017, Perum Permai Mulia No.01', 'Mendaki'),
+(18, 'Nurhatin, S.E.', '2101234567890000018', 4, 'Solo', '1988-05-22', 'Perempuan', 2, 1, '081234567018', 'nurhatin@gmail.com', '2021000100010018', '31', '3171', '3171100', '3171100005', 'Jl Kapuas I No.31', 'Bermain musik'),
+(19, 'Najib Waskito, S.E.', '2101234567890000019', 3, 'Jakarta', '1990-01-01', 'Laki-laki', 1, 2, '081234567019', 'najibwaskito@gmail.com', '2021000100010019', '31', '3175', '3175030', '3175030001', 'Jl Merapi I No.05', 'Membaca'),
+(20, 'Endang Maryati, S.E.', '2101234567890000020', 3, 'Jakarta', '1990-02-13', 'Perempuan', 3, 2, '081234567020', 'endangmaryati@gmail.com', '2021000100010020', '31', '3173', '3173030', '3173030003', 'Jl Kalibaru No.10', 'Yoga'),
+(21, 'Iwan Gunawan, S.Si.', '2101234567890000021', 3, 'Bandung', '1989-08-31', 'Laki-laki', 5, 2, '081234567021', 'iwangunawan@gmail.com', '2021000100010021', '31', '3173', '3173010', '3173010001', 'Perum Laksana Utama No.48', 'Fotografi'),
+(22, 'Vera Yuniarita, S.Sos.', '2101234567890000022', 3, 'Bandung', '1989-10-10', 'Perempuan', 2, 2, '081234567022', 'verayuniarita@gmail.com', '2021000100010022', '31', '3171', '3171040', '3171040001', 'RT 011 / RW 006, Perum Mulia Bakti No.77', 'Memasak'),
+(23, 'Redy Kaswara, S.Kom.', '2101234567890000023', 2, 'Yogyakarta', '1990-05-07', 'Laki-laki', 1, 2, '081234567023', 'redykaswara@gmail.com', '2021000100010023', '31', '3171', '3171050', '3171050001', 'Jl Kapuas III No.25', 'Membaca'),
+(24, 'Pramono, S.T.', '2101234567890000024', 2, 'Jakarta', '1990-04-30', 'Laki-laki', 1, 2, '081234567024', 'pramono@gmail.com', '2021000100010024', '31', '3174', '3174020', '3174020004', 'Perum Sari Raya No.81', 'Bermain musik'),
+(26, 'Yudi Setiadi, S.T.', '2101234567890000025', 1, 'Yogyakarta', '1990-10-16', 'Laki-laki', 1, 2, '081234567025', 'yudisetiadi@gmail.com', '2021000100010025', '31', '3171', '3171080', '3171080006', 'Jl Basuki III No.69', 'Membaca');
 
 -- --------------------------------------------------------
 
@@ -66660,6 +66703,61 @@ INSERT INTO `provinsi` (`pr_id`, `pr_nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `riwayat_pendidikan`
+--
+
+CREATE TABLE `riwayat_pendidikan` (
+  `rp_id` int(11) NOT NULL,
+  `pe_id` int(11) NOT NULL,
+  `tp_id` int(11) NOT NULL,
+  `rp_negara` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `rp_sekolah` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `rp_tahun_lulus` year(4) NOT NULL,
+  `rp_no_ijazah` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `rp_jurusan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `rp_bidang` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `rp_gelar` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `rp_bkn` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `riwayat_pendidikan`
+--
+
+INSERT INTO `riwayat_pendidikan` (`rp_id`, `pe_id`, `tp_id`, `rp_negara`, `rp_sekolah`, `rp_tahun_lulus`, `rp_no_ijazah`, `rp_jurusan`, `rp_bidang`, `rp_gelar`, `rp_bkn`) VALUES
+(2, 26, 1, 'Indonesia', 'SD Negeri I Jakarta', 2002, 'SD001IJZH', '-', '-', '-', 'Ya'),
+(5, 26, 2, 'Indonesia', 'SMP Negeri 2 Jakarta', 2005, 'SMP001IJZH', '-', '-', '-', 'Ya'),
+(6, 26, 3, 'Indonesia', 'SMA Negeri 3 Jakarta', 2008, 'SMA001IJZH', 'IPA', '-', '-', 'Ya'),
+(7, 26, 4, 'Indonesia', 'Universitas Gadjah Mada', 2012, 'S1001IJZH', 'Teknik Elektro ', 'Teknik', 'S.T.', 'Ya'),
+(8, 1, 1, 'Indonesia', 'SD Negeri 3 Jakarta', 1992, 'SD002IJZH', '-', '-', '-', 'Ya'),
+(9, 1, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 1995, 'SMP002IJZH', '-', '-', '-', 'Ya'),
+(10, 1, 3, 'Indonesia', 'SMA Negeri 3 Jakarta', 1998, 'SMA002IJZH', 'IPS', '-', '-', 'Ya'),
+(11, 1, 4, 'Indonesia', 'Universitas Indonesia', 2002, 'S1002IJZH', 'Hukum ', 'Hukum', 'S.H.', 'Ya'),
+(12, 1, 5, 'Indonesia', 'Universitas Indonesia', 2004, 'S2002IJZH', 'Ilmu Hukum ', 'Hukum', 'M.H.', 'Ya'),
+(13, 2, 1, 'Indonesia', 'SD Negeri 5 Bandung', 1987, 'SD003IJZH', '-', '-', '-', 'Ya'),
+(14, 2, 2, 'Indonesia', 'SMP Negeri 1 Bandung', 1990, 'SMP003IJZH', '-', '-', '-', 'Ya'),
+(15, 2, 3, 'Indonesia', 'SMA Negeri 7 Bandung', 1993, 'SMA003IJZH', 'IPS', '-', '-', 'Ya'),
+(16, 2, 4, 'Indonesia', 'Universitas Pendidikan Indonesia', 1997, 'S1003IJZH', 'Pendidikan Akutansi ', 'Ekonomi', 'S.Pd.', 'Ya'),
+(17, 2, 5, 'Indonesia', 'Universitas Pendidikan Indonesia', 2000, 'S2003IJZH', 'Pendidikan Akutansi', 'Ekonomi', 'M.Pd.', 'Ya'),
+(18, 3, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1997, 'SD004IJZH', '-', '-', '-', 'Ya'),
+(19, 3, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 2000, 'SMP004IJZH', '-', '-', '-', 'Ya'),
+(20, 3, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 2003, 'SMA004IJZH', 'IPS', '-', '-', 'Ya'),
+(21, 3, 4, 'Indonesia', 'Universitas Indonesia', 2007, 'S1004IJZH', 'Akutansi ', 'Ekonomi', 'S.E.', 'Ya'),
+(22, 3, 5, 'Indonesia', 'Universitas Indonesia', 2009, 'S2004IJZH', 'Ekonomi', 'Ekonomi', 'M.Si.', 'Ya'),
+(23, 4, 1, 'Indonesia', 'SD Negeri 5 Bandung', 1991, 'SD005IJZH', '-', '-', '-', 'Ya'),
+(24, 4, 2, 'Indonesia', 'SMP Negeri 1 Bandung', 1994, 'SMP005IJZH', '-', '-', '-', 'Ya'),
+(25, 4, 3, 'Indonesia', 'SMA Negeri 7 Bandung', 1997, 'SMA005IJZH', 'IPS', '-', '-', 'Ya'),
+(26, 4, 4, 'Indonesia', 'Universitas Indonesia', 2001, 'S1005IJZH', 'Hukum', 'Hukum', 'S.H.', 'Ya'),
+(27, 4, 5, 'Indonesia', 'Universitas Indonesia', 2003, 'S2005IJZH', 'Hukum', 'Hukum', 'M.H.', 'Ya'),
+(28, 6, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1987, 'SD006IJZH', '-', '-', '-', 'Ya'),
+(29, 6, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 1990, 'SMP006IJZH', '-', '-', '-', 'Ya'),
+(30, 6, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 1993, 'SMA006IJZH', 'IPS', '-', '-', 'Ya'),
+(31, 6, 4, 'Indonesia', 'Universitas Indonesia', 1997, 'S1006IJZH', 'Hukum', 'Hukum', 'S.H.', 'Ya'),
+(32, 6, 5, 'Indonesia', 'Universitas Indonesia', 2000, 'S2006IJZH', 'Ekonomi Manajemen', 'Hukum', 'M.M.', 'Ya');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `status`
 --
 
@@ -66676,6 +66774,51 @@ INSERT INTO `status` (`st_id`, `st_keterangan`) VALUES
 (1, 'Kawin'),
 (2, 'Belum Kawin'),
 (3, 'Cerai');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tanggungan`
+--
+
+CREATE TABLE `tanggungan` (
+  `ta_id` int(11) NOT NULL,
+  `ta_keterangan` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tanggungan`
+--
+
+INSERT INTO `tanggungan` (`ta_id`, `ta_keterangan`) VALUES
+(1, 'Istri'),
+(2, 'Suami'),
+(3, 'Anak ke-1'),
+(4, 'Anak ke-2'),
+(5, 'Anak ke-3');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tingkat_pendidikan`
+--
+
+CREATE TABLE `tingkat_pendidikan` (
+  `tp_id` int(11) NOT NULL,
+  `tp_jenjang` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `tingkat_pendidikan`
+--
+
+INSERT INTO `tingkat_pendidikan` (`tp_id`, `tp_jenjang`) VALUES
+(1, 'SD/MI'),
+(2, 'SMP/MTs'),
+(3, 'SMA'),
+(4, 'S1'),
+(5, 'S2'),
+(6, 'S3');
 
 -- --------------------------------------------------------
 
@@ -66730,6 +66873,14 @@ ALTER TABLE `kecamatan`
   ADD KEY `districts_id_index` (`kb_id`);
 
 --
+-- Indexes for table `keluarga`
+--
+ALTER TABLE `keluarga`
+  ADD PRIMARY KEY (`ke_id`),
+  ADD KEY `pe_id` (`pe_id`),
+  ADD KEY `ta_id` (`ta_id`);
+
+--
 -- Indexes for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
@@ -66762,10 +66913,30 @@ ALTER TABLE `provinsi`
   ADD PRIMARY KEY (`pr_id`);
 
 --
+-- Indexes for table `riwayat_pendidikan`
+--
+ALTER TABLE `riwayat_pendidikan`
+  ADD PRIMARY KEY (`rp_id`),
+  ADD KEY `pe_id` (`pe_id`),
+  ADD KEY `tp_id` (`tp_id`);
+
+--
 -- Indexes for table `status`
 --
 ALTER TABLE `status`
   ADD PRIMARY KEY (`st_id`);
+
+--
+-- Indexes for table `tanggungan`
+--
+ALTER TABLE `tanggungan`
+  ADD PRIMARY KEY (`ta_id`);
+
+--
+-- Indexes for table `tingkat_pendidikan`
+--
+ALTER TABLE `tingkat_pendidikan`
+  ADD PRIMARY KEY (`tp_id`);
 
 --
 -- Indexes for table `user`
@@ -66791,6 +66962,12 @@ ALTER TABLE `agama`
   MODIFY `ag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `keluarga`
+--
+ALTER TABLE `keluarga`
+  MODIFY `ke_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `pangkat`
 --
 ALTER TABLE `pangkat`
@@ -66800,13 +66977,31 @@ ALTER TABLE `pangkat`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `riwayat_pendidikan`
+--
+ALTER TABLE `riwayat_pendidikan`
+  MODIFY `rp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `status`
 --
 ALTER TABLE `status`
   MODIFY `st_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `tanggungan`
+--
+ALTER TABLE `tanggungan`
+  MODIFY `ta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `tingkat_pendidikan`
+--
+ALTER TABLE `tingkat_pendidikan`
+  MODIFY `tp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -66831,6 +67026,13 @@ ALTER TABLE `kecamatan`
   ADD CONSTRAINT `districts_regency_id_foreign` FOREIGN KEY (`kb_id`) REFERENCES `kabupaten` (`kb_id`);
 
 --
+-- Constraints for table `keluarga`
+--
+ALTER TABLE `keluarga`
+  ADD CONSTRAINT `keluarga_ibfk_1` FOREIGN KEY (`ta_id`) REFERENCES `tanggungan` (`ta_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `keluarga_ibfk_2` FOREIGN KEY (`pe_id`) REFERENCES `pegawai` (`pe_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `kelurahan`
 --
 ALTER TABLE `kelurahan`
@@ -66849,6 +67051,13 @@ ALTER TABLE `pegawai`
   ADD CONSTRAINT `pegawai_ibfk_7` FOREIGN KEY (`kb_id`) REFERENCES `kabupaten` (`kb_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pegawai_ibfk_8` FOREIGN KEY (`kc_id`) REFERENCES `kecamatan` (`kc_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pegawai_ibfk_9` FOREIGN KEY (`kl_id`) REFERENCES `kelurahan` (`kl_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `riwayat_pendidikan`
+--
+ALTER TABLE `riwayat_pendidikan`
+  ADD CONSTRAINT `riwayat_pendidikan_ibfk_1` FOREIGN KEY (`pe_id`) REFERENCES `pegawai` (`pe_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `riwayat_pendidikan_ibfk_2` FOREIGN KEY (`tp_id`) REFERENCES `tingkat_pendidikan` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

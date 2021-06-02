@@ -93,7 +93,7 @@
                                 $alamat = $_POST['alamat'];
                                 $hobi = $_POST['hobi'];
 
-                                $sql = "UPDATE pegawai SET pe_nama = '$nama', pe_nip = '$nip', pe_pangkat = '$pangkat', pe_tempat_lahir = '$tempat_lahir', pe_tanggal_lahir = '$tanggal_lahir', pe_jenis_kelamin = '$jenis_kelamin', pe_agama = '$agama', pe_status = '$status', pe_no_hp = '$no_hp', pe_email = '$email', pe_no_bpjs = '$no_bpjs', pe_provinsi = '$provinsi', pe_kabupaten = '$kabupaten', pe_kecamatan = '$kecamatan', pe_kelurahan = '$kelurahan', pe_alamat = '$alamat', pe_hobi = '$hobi' WHERE pe_id = '$id'";
+                                $sql = "UPDATE pegawai SET pe_nama = '$nama', pe_nip = '$nip', pa_id = '$pangkat', pe_tempat_lahir = '$tempat_lahir', pe_tanggal_lahir = '$tanggal_lahir', pe_jenis_kelamin = '$jenis_kelamin', ag_id = '$agama', st_id = '$status', pe_no_hp = '$no_hp', pe_email = '$email', pe_no_bpjs = '$no_bpjs', pr_id = '$provinsi', kb_id = '$kabupaten', kc_id = '$kecamatan', kl_id = '$kelurahan', pe_alamat = '$alamat', pe_hobi = '$hobi' WHERE pe_id = '$id'";
                                 $query = $conn->query($sql);
                                 if ($query) {
                                     echo "

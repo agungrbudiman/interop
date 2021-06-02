@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Data</h4>
+                        <h4 class="page-title">Data Pegawai</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
@@ -79,8 +79,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3">Jenis Kelamin</label>
-                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Laki-laki">Laki-laki</label>
-                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Perempuan">Perempuan</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Laki-laki" <?php echo ($edit->pe_jenis_kelamin=='Laki-laki')?'checked':''?> >Laki-laki</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Perempuan" <?php echo ($edit->pe_jenis_kelamin=='Perempuan')?'checked':''?>>Perempuan</label>
                                             <br>
                                         </div>
                                         <div class="form-group">
@@ -144,7 +144,7 @@
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="provinsi" id="provinsi">
                                                 <?php
-                                                    $sql = "SELECT*FROM provinsi LEFT JOIN pegawai USING(pr_id)";
+                                                    $sql = "SELECT*FROM provinsi ORDER BY pr_nama ASC";
                                                     $query = $conn->query($sql);
                                                     while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                         if ($edit->pr_id == $data->pr_id) {
@@ -168,17 +168,12 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kabupaten" id="kabupaten">
                                                     <?php
-                                                        $sql = "SELECT*FROM kabupaten LEFT JOIN pegawai USING(kb_id)";
+                                                        $sql = "SELECT*FROM kabupaten ORDER BY kb_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kb_id == $data->kb_id) {
                                                                 echo '
                                                                 <option value='.$data->kb_id.' selected>'.$data->kb_nama.'</option>
-                                                                ';
-                                                            }
-                                                            else{
-                                                                echo ' 
-                                                                <option value='.$data->kb_id.'>'.$data->kb_nama.'</option>
                                                                 ';
                                                             }  
                                                         }
@@ -192,7 +187,7 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kecamatan" id="kecamatan">
                                                     <?php
-                                                        $sql = "SELECT*FROM kecamatan LEFT JOIN pegawai USING(kc_id)";
+                                                        $sql = "SELECT*FROM kecamatan ORDER BY kc_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kc_id == $data->kc_id) {
@@ -200,11 +195,6 @@
                                                                 <option value='.$data->kc_id.' selected>'.$data->kc_nama.'</option>
                                                                 ';
                                                             }
-                                                            else{
-                                                                echo ' 
-                                                                <option value='.$data->kc_id.'>'.$data->kc_nama.'</option>
-                                                                ';
-                                                            }  
                                                         }
                                                     ?>
                                                 </select>
@@ -216,17 +206,12 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kelurahan" id="kelurahan">
                                                     <?php
-                                                        $sql = "SELECT*FROM kelurahan LEFT JOIN pegawai USING(kl_id)";
+                                                        $sql = "SELECT*FROM kelurahan ORDER BY kl_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kl_id == $data->kl_id) {
                                                                 echo '
                                                                 <option value='.$data->kl_id.' selected>'.$data->kl_nama.'</option>
-                                                                ';
-                                                            }
-                                                            else{
-                                                                echo ' 
-                                                                <option value='.$data->kl_id.'>'.$data->kl_nama.'</option>
                                                                 ';
                                                             }  
                                                         }
@@ -258,3 +243,49 @@
         <!-- ============================================================== -->
         <!-- End Page Content -->
         <!-- ============================================================== -->
+
+        <script>
+            $(document).ready(function () 
+            {
+                $("#provinsi").blur(function () 
+                {
+                    var id_prov = $(this).val();
+                    $.ajax({url: "alamat.php?id_prov="+id_prov}).done(function(data){$("#kabupaten").html(data);});
+                });
+
+                $("#kabupaten").blur(function () 
+                {
+                    var id_kabupaten = $(this).val();
+                    $.ajax({url: "alamat.php?id_kabupaten="+id_kabupaten}).done(function(data){$("#kecamatan").html(data);});
+                });
+
+                $("#kecamatan").blur(function () 
+                {
+                    var id_kec = $(this).val();
+                    $.ajax({url: "alamat.php?id_kec="+id_kec}).done(function(data){$("#kelurahan").html(data);});
+                });
+            });
+
+
+            var ajaxRequest;
+            function getAjax()
+            {
+                try{
+                    ajaxRequest = new XMLHttpRequest();
+                }
+                catch (e){
+                    try{
+                        ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                    }
+                    catch (e){
+                        try{
+                            ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        catch (e){
+                            alert("Your browser broke!");
+                            return false;
+                        }
+                    }
+                }
+            }
+        </script>
