@@ -35,6 +35,10 @@
 		case 'cuti':
 			require_once "cuti.php";
 			break;
+
+		case 'cuti-add':
+			require_once "cuti-add.php";
+			break;
 			
 		default:
 			require_once "index-content.php";
