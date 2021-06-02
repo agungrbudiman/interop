@@ -1,3 +1,7 @@
+        <?php
+            $sql = "SELECT * FROM jenis_cuti ORDER BY id ASC";
+            $result = $conn->query($sql);
+        ?>
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
@@ -23,17 +27,21 @@
                                 <div class="col-sm-12 col-xs-12">
                                     <form method="post" action="data">
                                         <div class="form-group">
-                                            <div class="dropdown">
-                                              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                                Jenis Cuti
-                                                <span class="caret"></span>
-                                              </button>
-                                              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                                <li><a href="#">Cuti alasan penting</a></li>
-                                                <li><a href="#">Cuti mengurus warisan</a></li>
-                                                <li><a href="#">Cuti tahunan</a></li>
-                                              </ul>
-                                            </div> 
+                                            <label>Jenis Cuti</label>
+                                            <div class="input-group">
+                                                <select class="form-control">
+                                                    <?php
+                                                    $check = $result->rowCount();
+                                                    if ($check > 0) {
+                                                        $data = $result->fetchAll();
+                                                        foreach($data as $row) {
+                                                            echo "<option value=" . $row['id'] . ">" . $row['value'] . "</option>";
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                                <span class="input-group-btn"> <button type="button" class="glyphicon glyphicon-plus btn btn-default" aria-label="Left Align"></button></span>
+                                          </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Saldo Cuti</label>
@@ -74,6 +82,10 @@
                                         <div class="form-group">
                                             <label>Keterangan</label>
                                                 <textarea rows="5" name="saldo-cuti" class="form-control" value="" placeholder="Text input" style="min-width: 100%"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">File Pendukung</label>
+                                            <input type="file" id="exampleInputFile">
                                         </div>                              
                                         <button type="submit" name="add" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
                                         <a href="data" class="btn btn-inverse waves-effect waves-light">Cancel</a>
