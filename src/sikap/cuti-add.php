@@ -27,7 +27,7 @@
                                     <div class="input-group">
                                         <select name="jenis_cuti" class="form-control">
                                             <?php
-                                            $sql = "SELECT * FROM jenis_cuti ORDER BY id ASC";
+                                            $sql = "SELECT * FROM jenis_cuti ORDER BY id DESC";
                                             $result = $conn->query($sql);
                                             while ($row = $result->fetch()) {
                                                 echo "<option value=" . $row['id'] . ">" . $row['value'] . "</option>";
