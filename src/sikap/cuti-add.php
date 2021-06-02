@@ -23,7 +23,7 @@
                         <div class="col-sm-12 col-xs-12">
                             <form method="post" action="cuti-add">
                                 <div class="form-group">
-                                    <label>Jenis Cuti</label>
+                                    <label>Kategori Cuti</label>
                                     <div class="input-group">
                                         <select name="jenis_cuti" class="form-control">
                                             <?php
@@ -34,13 +34,27 @@
                                             }
                                             ?>
                                         </select>
-                                        <span class="input-group-btn"> <button type="button" class="glyphicon glyphicon-plus btn btn-default" aria-label="Left Align"></button></span>
+                                        <button type="button" class="btn btn-link" aria-label="Left Align" style="padding-left: 0;" data-toggle="modal" data-target="#tambahkategori">tambah kategori</button>
+                                  </div>
+                                </div>
+                                <div class="modal fade" id="tambahkategori" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-body">
+                                        <label>Kategori Cuti</label>
+                                        <input type="text" name="kategori" class="form-control" value="" placeholder="Cuti tahunan">
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Durasi Cuti</label>
                                     <div class="input-group">
-                                        <input type="number" name="durasi" class="form-control" aria-describedby="basic-addon2" value="" placeholder="1">
+                                        <input type="number" name="durasi" class="form-control" value="" placeholder="1">
                                         <span class="input-group-addon" id="basic-addon2">hari</span>
                                     </div>
                                 </div>
@@ -58,7 +72,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                        <textarea rows="5" name="alamat" class="form-control" value="" placeholder="Alamat lengkap" style="min-width: 100%"></textarea>
+                                        <textarea rows="5" name="alamat" class="form-control" value="" placeholder="Jl.Garuda No 17" style="min-width: 100%"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
@@ -90,11 +104,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cuti_end = $_POST['cuti_end'];
     $alamat = $_POST['alamat'];
     $keterangan = $_POST['keterangan'];
+    $kategori = $_POST['kategori'];
 
-    $sql = "INSERT INTO cuti VALUES('0','$us_id','$jenis_cuti','0','$durasi','$cuti_start','$cuti_end','$alamat','$keterangan')";
+    if (empty($kategori)) {
+        $sql = "INSERT INTO cuti VALUES('0','$us_id','$jenis_cuti','0','$durasi','$cuti_start','$cuti_end','$alamat','$keterangan')";
+    }
+    else {
+        $sql = "INSERT INTO jenis_cuti VALUES('0','$kategori')";
+    }
     $query = $conn->query($sql);
     if($query === TRUE) {
-
+        echo '<div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> Proses berhasil.
+        </div>';
     }
     else {
 
