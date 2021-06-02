@@ -54,9 +54,9 @@
                                                 <div class="dropdown">
                                                     <button class="btn btn-basic dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-bars fa-fw" aria-hidden="true"></i><span class="caret"></span></button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="kepangkatan/">Riwayat Kepangkatan</a></li>
+														<li><a href="kepangkatan"> Kepangkatan</a></li>
+														<li><a href="jabatan"> Riwayat Jabatan</a></li>
                                                         <li><a href="pendidikan/">Riwayat Pendidikan</a></li>
-                                                        <li><a href="jabatan/">Riwayat Jabatan</a></li>
                                                         <li><a href="keluarga/">Data Keluarga</a></li>
                                                     </ul>
                                                 </div>

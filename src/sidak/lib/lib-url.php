@@ -47,6 +47,30 @@
 		case 'keluarga-edit':
 			require_once "keluarga-edit.php";
 			break;
+		
+		case 'kepangkatan':
+			require_once "kepangkatan.php";
+			break;
+
+		case 'kepangkatan-add':
+			require_once "kepangkatan-add.php";
+			break;
+
+		case 'kepangkatan-edit':
+			require_once "kepangkatan-edit.php";
+			break;
+			
+		case 'jabatan':
+			require_once "jabatan.php";
+			break;
+
+		case 'jabatan-add':
+			require_once "jabatan-add.php";
+			break;
+
+		case 'jabatan-edit':
+			require_once "jabatan-edit.php";
+			break;
 
 		default:
 			require_once "index-content.php";
