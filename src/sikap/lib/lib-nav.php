@@ -15,6 +15,7 @@
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;"><a href="index"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a></li>
                     <li><a href="kehadiran"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Kehadiran</a></li>
+                    <li><a href="cuti"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Cuti</a></li>
                 </ul>
             </div>
         </div>
