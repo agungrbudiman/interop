@@ -76,6 +76,10 @@
 			require_once "alamat.php";
 			break;
 
+		case 'alamat':
+			require_once "alamat.php";
+			break;
+
 		default:
 			require_once "index-content.php";
 			break;
