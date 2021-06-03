@@ -23,81 +23,148 @@
                                 <div class="col-sm-12 col-xs-12">
                                     <form method="post" action="data">
                                         <div class="form-group">
-                                            <label>Nama</label>
-                                            <input type="text" name="nama" class="form-control">
+                                            <label class="col-sm-2">Nama</label>
+                                            <div class="col-sm-10"><input type="text" name="nama" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>NIP</label>
-                                            <input type="text" name="nip" class="form-control">
+                                            <label class="col-sm-2">NIP</label>
+                                            <div class="col-sm-10"><input type="text" name="nip" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Pangkat dan Golongan Ruang</label>
-                                            <select class="form-control" name="pangkat">
-                                               <option value='III A'>III A Penata Muda</option>
-                                               <option value='III B'>III B Penata Muda Tingkat I</option>
-                                               <option value='III C'>III C Penata</option>
-                                               <option value='III D'>III D Penata Tingkat I</option>
-                                               <option value='IV A'>IV A Pembina</option>
-                                               <option value='IV B'>IV B Pembina Tingkat I</option>
-                                               <option value='IV C'>IV C Pembina Utama Muda</option>
-                                               <option value='IV D'>IV D Pembina Utama Madya</option>
-                                               <option value='IV E'>IV E Pembina Utama</option>
-                                            </select>
+                                            <label class="col-sm-2">Pangkat dan Golongan Ruang</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="pangkat">
+                                                   <?php
+                                                        require_once(__DIR__.'/lib/config.php');
+                                                        $sql = "SELECT*FROM pangkat";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            echo '
+                                                            <option value='.$data->pa_id.'>'.$data->pa_keterangan.'</option>
+                                                            ';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
                                         </div>     
                                         <div class="form-group">
-                                            <label>Tempat Lahir</label>
-                                            <input type="text" name="tempat-lahir" class="form-control">
+                                            <label class="col-sm-2">Tempat Lahir</label>
+                                            <div class="col-sm-10"><input type="text" name="tempat-lahir" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Tanggal Lahir</label>
-                                            <input type="text" name="tanggal-lahir" class="form-control">
+                                            <label class="col-sm-2">Tanggal Lahir</label>
+                                            <div class="col-sm-10"><input type="date" name="tanggal-lahir" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Jenis Kelamin</label><br>
-                                            <label class="radio-inline"><input type="radio" name="jenis-kelamin" value="Laki-laki">Laki-laki</label>
-                                            <label class="radio-inline"><input type="radio" name="jenis-kelamin" value="Perempuan">Perempuan</label>
+                                            <label class="col-sm-3">Jenis Kelamin</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Laki-laki">Laki-laki</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Perempuan">Perempuan</label>
+                                            <br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Agama</label>
+                                            <label class="col-sm-2">Agama</label>
+                                            <div class="col-sm-10">
                                             <select class="form-control" name="agama">
-                                               <option value='Islam'>Islam</option>
-                                               <option value='Kristen'>Kristen</option>
-                                               <option value='Katolik'>Katolik</option>
-                                               <option value='Hindu'>Hindu</option>
-                                               <option value='Buddha'>Buddha</option>
-                                               <option value='Konghuchu'>Konghuchu</option>
+                                               <?php
+                                                    $sql = "SELECT*FROM agama";
+                                                    $query = $conn->query($sql);
+                                                    while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                        echo '
+                                                        <option value='.$data->ag_id.'>'.$data->ag_keterangan.'</option>
+                                                        ';
+                                                    }
+                                                ?>
                                             </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Status Perkawinan</label>
+                                            <label class="col-sm-2">Status Perkawinan</label>
+                                            <div class="col-sm-10">
                                             <select class="form-control" name="status">
-                                               <option value='Belum Kawin'>Belum Kawin</option>
-                                               <option value='Kawin'>Kawin</option>
-                                               <option value='Cerai'>Cerai</option>
+                                               <?php
+                                                    $sql = "SELECT*FROM status";
+                                                    $query = $conn->query($sql);
+                                                    while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                        echo '
+                                                        <option value='.$data->st_id.'>'.$data->st_keterangan.'</option>
+                                                        ';
+                                                    }
+                                                ?>
                                             </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>No.HP</label>
-                                            <input type="text" name="no-hp" class="form-control">
+                                            <label class="col-sm-2">No.HP</label>
+                                            <div class="col-sm-10"><input type="text" name="no-hp" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" name="email" class="form-control">
+                                            <label class="col-sm-2">Email</label>
+                                            <div class="col-sm-10"><input type="email" name="email" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>No BPJS</label>
-                                            <input type="text" name="no-bpjs" class="form-control">
+                                            <label class="col-sm-2">No BPJS</label>
+                                            <div class="col-sm-10"><input type="text" name="no-bpjs" class="form-control"></div>
+                                            <br><br>
+                                        </div>   
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Provinsi</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="provinsi" id="provinsi">
+                                                <?php
+                                                    $sql = "SELECT*FROM provinsi ORDER BY pr_nama ASC";
+                                                    $query = $conn->query($sql);
+                                                    while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                        echo '
+                                                        <option value='.$data->pr_id.'>'.$data->pr_nama.'</option>
+                                                        ';
+                                                    }
+                                                ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Alamat</label>
-                                            <input type="text" name="alamat" class="form-control">
+                                            <label class="control-label col-sm-2">Kota/Kabupaten</label>
+                                            <div class="col-sm-10">          
+                                              <select class="form-control" name="kabupaten" id="kabupaten"></select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Kecamatan</label>
+                                            <div class="col-sm-10">          
+                                              <select class="form-control" name="kecamatan" id="kecamatan"></select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Kelurahan</label>
+                                            <div class="col-sm-10">          
+                                              <select class="form-control" name="kelurahan" id="kelurahan"></select>
+                                            </div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Alamat</label>
+                                            <div class="col-sm-10"><input type="text" name="alamat" class="form-control"></div>
+                                            <br><br>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Hobi</label>
+                                            <div class="col-sm-10"><input type="text" name="hobi" class="form-control"></div>
+                                            <br><br>
                                         </div>                           
-                                        <div class="form-group">
-                                            <label>Hobi</label>
-                                            <input type="text" name="hobi" class="form-control">
-                                        </div>                           
-                                        <button type="submit" name="add" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                                        <a href="data" class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                                        <button type="submit" name="add" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
+                                        <a href="data" class="btn btn-default waves-effect waves-light">Cancel</a>
                                     </form>
                                 </div>
                             </div>
@@ -111,15 +178,58 @@
         <!-- ============================================================== -->
 
         <script>
-            $(document).ready(function(){
-                var date_input=$('input[name="tanggal-lahir"]');
-                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                date_input.datepicker({
-                    format: 'dd/mm/yyyy',
-                    container: container,
-                    todayHighlight: true,
-                    autoclose: true,
-                })
-            })
+            $(document).ready(function () 
+            {
+                $("#provinsi").blur(function () 
+                {
+                    var id_prov = $(this).val();
+                    $.ajax({url: "alamat.php?id_prov="+id_prov}).done(function(data){$("#kabupaten").html(data);});
+                });
+
+                $("#kabupaten").blur(function () 
+                {
+                    var id_kabupaten = $(this).val();
+                    $.ajax({url: "alamat.php?id_kabupaten="+id_kabupaten}).done(function(data){$("#kecamatan").html(data);});
+                });
+
+                $("#kecamatan").blur(function () 
+                {
+                    var id_kec = $(this).val();
+                    $.ajax({url: "alamat.php?id_kec="+id_kec}).done(function(data){$("#kelurahan").html(data);});
+                });
+            });
+
+
+            var ajaxRequest;
+
+            function getAjax()  //mengecek apakah web browser support AJAX atau tidak
+            {
+               try
+               {
+                    // Opera 8.0+, Firefox, Safari
+                    ajaxRequest = new XMLHttpRequest();
+               }
+               catch (e)
+               {
+                    // Internet Explorer Browsers
+                    try
+                    {
+                         ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                    }
+                    catch (e)
+                    {
+                         try
+                         {
+                               ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                         }
+                         catch (e)
+                         {
+                               // Something went wrong
+                               alert("Your browser broke!");
+                               return false;
+                         }
+                    }
+               }
+            }
         </script>
 

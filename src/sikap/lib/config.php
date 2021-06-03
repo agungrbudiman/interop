@@ -1,9 +1,10 @@
 <?php
+	include "./baseurl.php";
 	$host       = "127.0.0.1";
 	$username 	= "root";
 	$password 	= "";
 	$dbname 	= "sikap";
-	$base_url   = "http://localhost/sikap/";
+	$base_url   = "$BASEURL";
 
 	try {
 	    $conn = new PDO("mysql:host=$host;dbname=$dbname",$username,$password);
