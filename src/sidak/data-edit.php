@@ -144,14 +144,12 @@
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="provinsi" id="provinsi">
                                                 <?php
-// <<<<<<< HEAD
                                                     // $sql = "SELECT*FROM provinsi LEFT JOIN pegawai USING(pr_id)";
-// =======
                                                     $sql = "SELECT*FROM provinsi ORDER BY pr_nama ASC";
-// >>>>>>> ebedia/pendidikan-dan-keluarga
                                                     $query = $conn->query($sql);
                                                     while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                         if ($edit->pr_id == $data->pr_id) {
+                                                            $pr_id = $data->pr_id;
                                                             echo '
                                                             <option value='.$data->pr_id.' selected>'.$data->pr_nama.'</option>
                                                             ';
@@ -172,18 +170,14 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kabupaten" id="kabupaten">
                                                     <?php
-// <<<<<<< HEAD
-                                                        // $sql = "SELECT*FROM kabupaten LEFT JOIN pegawai USING(kb_id)";
-// =======
-                                                        $sql = "SELECT*FROM kabupaten ORDER BY kb_nama ASC";
-// >>>>>>> ebedia/pendidikan-dan-keluarga
+                                                        $sql = "SELECT*FROM kabupaten WHERE pr_id ='" . $pr_id . "' ORDER BY kb_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kb_id == $data->kb_id) {
+                                                                $kb_id = $data->kb_id;
                                                                 echo '
                                                                 <option value='.$data->kb_id.' selected>'.$data->kb_nama.'</option>
                                                                 ';
-// <<<<<<< HEAD
                                                             }
                                                             else{
                                                                 echo ' 
@@ -201,10 +195,11 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kecamatan" id="kecamatan">
                                                     <?php
-                                                        $sql = "SELECT*FROM kecamatan LEFT JOIN pegawai USING(kc_id)";
+                                                        $sql = "SELECT*FROM kecamatan WHERE kb_id='" . $kb_id . "' ORDER BY kc_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kc_id == $data->kc_id) {
+                                                                $kc_id = $data->kc_id;
                                                                 echo '
                                                                 <option value='.$data->kc_id.' selected>'.$data->kc_nama.'</option>
                                                                 ';
@@ -225,7 +220,7 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kelurahan" id="kelurahan">
                                                     <?php
-                                                        $sql = "SELECT*FROM kelurahan LEFT JOIN pegawai USING(kl_id)";
+                                                        $sql = "SELECT*FROM kelurahan WHERE kc_id='" . $kc_id . "' ORDER BY kl_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kl_id == $data->kl_id) {

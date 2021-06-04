@@ -196,19 +196,19 @@
         <script>
             $(document).ready(function () 
             {
-                $("#provinsi").blur(function () 
+                $("#provinsi").change(function () 
                 {
                     var id_prov = $(this).val();
-                    $.ajax({url: "alamat.php?id_prov="+id_prov}).done(function(data){$("#kabupaten").html(data);});
+                    $.ajax({url: "alamat.php?id_prov="+id_prov}).done(function(data){$("#kabupaten").html(data); $("#kabupaten").trigger('change')});
                 });
 
-                $("#kabupaten").blur(function () 
+                $("#kabupaten").change(function () 
                 {
                     var id_kabupaten = $(this).val();
-                    $.ajax({url: "alamat.php?id_kabupaten="+id_kabupaten}).done(function(data){$("#kecamatan").html(data);});
+                    $.ajax({url: "alamat.php?id_kabupaten="+id_kabupaten}).done(function(data){$("#kecamatan").html(data); $("#kecamatan").trigger('change')});
                 });
 
-                $("#kecamatan").blur(function () 
+                $("#kecamatan").change(function () 
                 {
                     var id_kec = $(this).val();
                     $.ajax({url: "alamat.php?id_kec="+id_kec}).done(function(data){$("#kelurahan").html(data);});
