@@ -8,11 +8,11 @@
             <div id="alert-tambahkategori" class="alert alert-success hidden" role="alert">
                 <strong>Berhasil!</strong>
             </div>
-            <label>Kategori Cuti</label>
-            <input id="inputkategori" type="text" name="kategori" class="form-control" value="" placeholder="Cuti tahunan">
+            <label>Kategori Izin</label>
+            <input id="inputkategori" type="text" name="kategori" class="form-control" value="" placeholder="">
         </div>
         <div class="modal-footer">
-            <a href="cuti-add"><button id="btn-return" type="button" class="btn btn-secondary hidden">Kembali</button></a>
+            <a href="izin-add"><button id="btn-return" type="button" class="btn btn-secondary hidden">Kembali</button></a>
             <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
             <button id="btn-tambahkategori" type="button" class="btn btn-primary">Simpan</button>
           </div>
@@ -26,10 +26,10 @@
             <h2 class="modal-title">Berhasil!</h2>
         </div>
       <div class="modal-body">
-        Pengajuan cuti anda berhasil disimpan
+        Pengajuan izin anda berhasil disimpan
       </div>
       <div class="modal-footer">
-        <a href="cuti"><button type="button" class="btn btn-primary">Kembali</button></a>
+        <a href="izin"><button type="button" class="btn btn-primary">Kembali</button></a>
       </div>
     </div>
   </div>
@@ -43,24 +43,24 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index">Home</a></li>
-                    <li><a href="cuti">Cuti</a></li>
-                    <li class="active">Pengajuan Cuti</li>
+                    <li><a href="izin">Perizinan</a></li>
+                    <li class="active">Pengajuan Izin</li>
                 </ol>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
-                    <h3 class="box-title m-b-0">Pengajuan Cuti</h3><br>
+                    <h3 class="box-title m-b-0">Pengajuan Izin</h3><br>
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                                 <div class="row">
                                     <div class="form-group col-sm-4">
-                                        <label>Kategori Cuti</label>
+                                        <label>Kategori Izin</label>
                                         <div class="input-group" style="width:100%">
-                                            <select id="jenis_cuti" name="jenis_cuti" class="form-control">
+                                            <select id="jenis_izin" name="jenis_izin" class="form-control">
                                                 <?php
-                                                $sql = "SELECT * FROM jenis_cuti ORDER BY id DESC";
+                                                $sql = "SELECT * FROM jenis_izin ORDER BY id DESC";
                                                 $result = $conn->query($sql);
                                                 while ($row = $result->fetch()) {
                                                     echo "<option value=" . $row['id'] . ">" . $row['value'] . "</option>";
@@ -73,28 +73,24 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-sm-4">
-                                        <label>Mulai Cuti</label>
+                                        <label>Mulai Izin</label>
                                         <div class="input-group" style="width: 100%;">
-                                            <input id="cuti_start" type="date" name="cuti_start" class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                                            <input id="izin_start" type="date" name="izin_start" class="form-control" value="<?php echo date('Y-m-d'); ?>">
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-4">
-                                        <label>Durasi Cuti</label>
+                                        <label>Durasi Izin</label>
                                         <div class="input-group">
                                             <input id="durasi" type="number" name="durasi" class="form-control" value="0" placeholder="0">
                                             <span class="input-group-addon">hari</span>
                                         </div>
                                     </div>
                                     <div class="form-group col-sm-4">
-                                        <label>Akhir Cuti</label>
+                                        <label>Akhir Izin</label>
                                         <div class="input-group" style="width: 100%;">
-                                            <input id="cuti_end" type="date" name="cuti_end" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                            <input id="izin_end" type="date" name="izin_end" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Alamat</label>
-                                        <textarea id="alamat" rows="5" name="alamat" class="form-control" value="" placeholder="Jl.Garuda No 17" style="min-width: 100%"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Keterangan</label>
@@ -105,7 +101,7 @@
                                     <input type="file" id="exampleInputFile">
                                 </div>                              
                                 <button id="btn-pengajuan" type="button" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
-                                <a href="cuti" class="btn btn-inverse waves-effect waves-light">Batal</a>
+                                <a href="izin" class="btn btn-inverse waves-effect waves-light">Batal</a>
                         </div>
                     </div>
                 </div>
@@ -119,20 +115,19 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $us_id = $_SESSION['id'];
-    $jenis_cuti = $_POST['jenis_cuti'];
-    $jenis_cuti_val = $_POST['jenis_cuti_val'];
+    $jenis_izin = $_POST['jenis_izin'];
+    $jenis_izin_val = $_POST['jenis_izin_val'];
     $durasi = $_POST['durasi'];
-    $cuti_start = $_POST['cuti_start'];
-    $cuti_end = $_POST['cuti_end'];
-    $alamat = $_POST['alamat'];
+    $izin_start = $_POST['izin_start'];
+    $izin_end = $_POST['izin_end'];
     $keterangan = $_POST['keterangan'];
     $kategori = $_POST['kategori'];
 
     if (empty($kategori)) {
-        $sql = "INSERT INTO cuti VALUES('0','$us_id','$jenis_cuti','$jenis_cuti_val','0','$durasi','$cuti_start','$cuti_end','$alamat','$keterangan')";
+        $sql = "INSERT INTO izin VALUES('0','$us_id','$jenis_izin','$jenis_izin_val','$durasi','$izin_start','$izin_end','$keterangan')";
     }
     else {
-        $sql = "INSERT INTO jenis_cuti VALUES('0','$kategori')";
+        $sql = "INSERT INTO jenis_izin VALUES('0','$kategori')";
     }
     $query = $conn->query($sql);
     if ($query == FALSE) {
@@ -143,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <script>
 $( document ).ready(function() {
     $("#btn-tambahkategori").click(function(){
-        $.post("cuti-add",
+        $.post("izin-add",
           {
             kategori: $("#inputkategori").val()
           },
@@ -155,26 +150,25 @@ $( document ).ready(function() {
         });
     });
     $("#btn-pengajuan").click(function(){
-        $.post("cuti-add",
+        $.post("izin-add",
           {
-            jenis_cuti: $("#jenis_cuti").val(),
-            jenis_cuti_val: $("#jenis_cuti option:selected").text(),
+            jenis_izin: $("#jenis_izin").val(),
+            jenis_izin_val: $("#jenis_izin option:selected").text(),
             durasi: $("#durasi").val(),
-            cuti_start: $("#cuti_start").val(),
-            cuti_end: $("#cuti_end").val(),
-            alamat: $("#alamat").val(),
+            izin_start: $("#izin_start").val(),
+            izin_end: $("#izin_end").val(),
             keterangan: $("#keterangan").val()
           },
         function(data, status){
             $("#statuspengajuan").modal('show');
         });
     });
-    $("#cuti_start,#durasi").change(function(){
-        var end_date = addDays($("#cuti_start").val(),parseInt($("#durasi").val()));
+    $("#izin_start,#durasi").change(function(){
+        var end_date = addDays($("#izin_start").val(),parseInt($("#durasi").val()));
         result_date = end_date.getFullYear() + '-'
              + ('0' + (end_date.getMonth()+1)).slice(-2) + '-'
              + ('0' + end_date.getDate()).slice(-2);
-        $("#cuti_end").val(result_date);
+        $("#izin_end").val(result_date);
         // console.log(end_date.getDate()+'/'+(end_date.getMonth()+1)+'/'+end_date.getFullYear());
     });
     function addDays(date, days) {

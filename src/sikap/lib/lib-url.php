@@ -35,6 +35,14 @@ if(isset($_GET['page'])){
 		case 'cuti-add':
 			require_once "cuti-add.php";
 			break;
+
+		case 'izin':
+			require_once "izin.php";
+			break;
+
+		case 'izin-add':
+			require_once "izin-add.php";
+			break;
 			
 		default:
 			require_once "index-content.php";
