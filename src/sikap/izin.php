@@ -10,15 +10,15 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index">Home</a></li>
-                    <li><a href="cuti">Cuti</a></li>
-                    <li class="active">Data Cuti</li>
+                    <li><a href="izin">Perizinan</a></li>
+                    <li class="active">Data Izin</li>
                 </ol>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="white-box">
-                    <h3 class="box-title m-b-0">Data Cuti</h3><br>
+                    <h3 class="box-title m-b-0">Data Izin</h3><br>
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
                             <div class="table-responsive">
@@ -26,28 +26,21 @@
                                     <thead>
                                         <tr>
                                             <th>Jenis</th>
-                                            <th>Saldo</th>
                                             <th>Durasi</th>
                                             <th>Mulai</th>
                                             <th>Berakhir</th>
-                                            <th>Alamat</th>
                                             <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = "SELECT * FROM cuti WHERE us_id=" . $_SESSION['id'];
+                                        $sql = "SELECT * FROM izin WHERE us_id=" . $_SESSION['id'];
                                         $result = $conn->query($sql);
                                         while ($row = $result->fetch()) {
-                                            // mengurangi operasi join tiap row
-                                            // $sql = "SELECT jenis_cuti.value FROM cuti JOIN jenis_cuti ON jenis_cuti.id = cuti.jenis_cuti WHERE jenis_cuti.id=" . $row['jenis_cuti'];
-                                            // echo "<tr> <td>" . $conn->query($sql)->fetch(PDO::FETCH_ASSOC)['value'] . "</td>" .
-                                                echo "<tr><td>" . $row['jenis_cuti_val'] . "</td>" .
-                                                "<td>" . $row['saldo'] . "</td>" .
+                                                echo "<tr><td>" . $row['jenis_izin_val'] . "</td>" .
                                                 "<td>" . $row['durasi'] . "</td>" .
-                                                "<td>" . $row['cuti_start'] . "</td>" .
-                                                "<td>" . $row['cuti_end'] . "</td>" .
-                                                "<td>" . $row['alamat'] . "</td>" .
+                                                "<td>" . $row['izin_start'] . "</td>" .
+                                                "<td>" . $row['izin_end'] . "</td>" .
                                                 "<td>" . $row['keterangan'] . "</td> </tr>";
                                         }
                                         ?>
@@ -59,7 +52,7 @@
                 </div>
             </div>
         </div>
-            <a href="cuti-add"><button type="button" class="btn btn-primary">Pengajuan Cuti</button></a>
+            <a href="izin-add"><button type="button" class="btn btn-primary">Pengajuan Izin</button></a>
     </div>
 </div>
 <!-- ============================================================== -->
