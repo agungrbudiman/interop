@@ -159,7 +159,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql = "SELECT * FROM riwayat_pendidikan JOIN pegawai USING(pe_id) JOIN tingkat_pendidikan USING(tp_id) WHERE pe_id='$id'";
+                                            $sql = "SELECT * FROM riwayat_pendidikan JOIN tingkat_pendidikan USING(tp_id) WHERE pe_id='$id' ORDER BY tp_id";
                                             $query = $conn->query($sql);
                                             $check = $query->rowCount();
                                             if ($check >= 1) {

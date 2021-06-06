@@ -84,7 +84,7 @@
                                             <br>
                                         </div>
                                         <button type="submit" name="add" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
-                                        <a href="pendidikan" class="btn btn-default waves-effect waves-light">Cancel</a>
+                                        <a href="pendidikan/<?php echo $_GET['id'];?>" class="btn btn-default waves-effect waves-light">Cancel</a>
                                     </form>
                                 </div>
                             </div>

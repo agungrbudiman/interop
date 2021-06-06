@@ -10,89 +10,121 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="index">Home</a></li>
-                            <li><a href="kepangkatan">Kepangkatan</a></li>
-                            <li class="active">Add Kepangkatan</li>
+                            <li><a href="data">Data Pegawai</a></li>
+                            <li><a href="kepangkatan/<?php echo $_GET['id'];?>">Riwayat Kepangkatan</a></li>
+                            <li class="active">Add Riwayat Kepangkatan</li>
                         </ol>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Add Kepangkatan</h3><br>
+                            <h3 class="box-title m-b-0">Add Riwayat Kepangkatan</h3><br>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form method="post" action="data">
+                                    <form method="post" action="kepangkatan">
+                                        <input type="hidden" name="pe_id" value="<?php echo $_GET['id'];?>">
                                         <div class="form-group">
-                                            <label>Jenis Kepangkatan</label>
-                                            <input type="text" name="jenis_kepangkatan" class="form-control">
+                                            <label class="col-sm-2">Jenis Kepangkatan</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="jenis-kepangkatan">
+                                                   <?php
+                                                        require_once(__DIR__.'/lib/config.php');
+                                                        $sql = "SELECT*FROM jenis_kepangkatan";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            echo '
+                                                            <option value='.$data->jp_id.'>'.$data->jp_keterangan.'</option>
+                                                            ';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nomor SK</label>
-                                            <input type="text" name="nomor_sk" class="form-control">
+                                            <label class="col-sm-2">Nomor SK</label>
+                                            <div class="col-sm-10"><input type="text" name="no-sk" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Oleh</label>
-                                            <input type="text" name="oleh" class="form-control">
-                                        </div>     
-                                        <div class="form-group">
-                                            <label class="control-label" for="tanggal_sk">Tanggal SK</label>
-                                            <input class="form-control" id="tanggal_sk" name="tanggal_sk" placeholder="MM/DD/YYY" type="text"/>
+                                            <label class="col-sm-2">Oleh</label>
+                                            <div class="col-sm-10"><input type="text" name="oleh" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Pendidikan</label>
-                                            <select class="form-control" name="pendidikan">
-                                               <option value='SD'>SD</option>
-                                               <option value='SMP'>SMP</option>
-                                               <option value='SMA'>SMA</option>
-                                               <option value='D I'>D I</option>
-                                               <option value='D II'>D II</option>
-                                               <option value='D III'>D III</option>
-                                               <option value='D IV'>D IV</option>
-                                               <option value='S1'>S1</option>
-											   <option value='S2'>S2</option>
-											   <option value='S3'>S3</option>
-                                            </select>
+                                            <label class="col-sm-2">Tanggal SK</label>
+                                            <div class="col-sm-10"><input type="date" name="tanggal-sk" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Golongan</label>
-                                            <select class="form-control" name="golongan">
-                                               <option value='III A'>III A Penata Muda</option>
-                                               <option value='III B'>III B Penata Muda Tingkat I</option>
-                                               <option value='III C'>III C Penata</option>
-                                               <option value='III D'>III D Penata Tingkat I</option>
-                                               <option value='IV A'>IV A Pembina</option>
-                                               <option value='IV B'>IV B Pembina Tingkat I</option>
-                                               <option value='IV C'>IV C Pembina Utama Muda</option>
-                                               <option value='IV D'>IV D Pembina Utama Madya</option>
-                                               <option value='IV E'>IV E Pembina Utama</option>
-                                            </select>
+                                            <label class="col-sm-2">Pendidikan</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="pendidikan">
+                                                   <?php
+                                                        require_once(__DIR__.'/lib/config.php');
+                                                        $sql = "SELECT*FROM tingkat_pendidikan";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            echo '
+                                                            <option value='.$data->tp_id.'>'.$data->tp_jenjang.'</option>
+                                                            ';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>TMT Golongan</label>
-                                            <input type="text" name="tmt_golongan" class="form-control">
+                                            <label class="col-sm-2">Golongan</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="golongan">
+                                                   <?php
+                                                        require_once(__DIR__.'/lib/config.php');
+                                                        $sql = "SELECT*FROM pangkat";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            echo '
+                                                            <option value='.$data->pa_id.'>'.$data->pa_keterangan.'</option>
+                                                            ';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Tahun Masa Kerja</label>
-                                            <input type="text" name="tahun_masa_kerja" class="form-control">
+                                            <label class="col-sm-2">TMT Golongan</label>
+                                            <div class="col-sm-10"><input type="date" name="tmt-golongan" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Bulan Masa Kerja</label>
-                                            <input type="text" name="bulan_masa_kerja" class="form-control">
+                                            <label class="col-sm-2">Tahun Masa Kerja</label>
+                                            <div class="col-sm-10"><input type="text" name="tahun-masa-kerja" class="form-control"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nomor BKN</label>
-                                            <input type="text" name="nomor_bkn" class="form-control">
+                                            <label class="col-sm-2">Bulan Masa Kerja</label>
+                                            <div class="col-sm-10"><input type="text" name="bulan-masa-kerja" class="form-control"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Nomor BKN</label>
+                                            <div class="col-sm-10"><input type="text" name="no-bkn" class="form-control"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Tanggal BKN</label>
+                                            <div class="col-sm-10"><input type="date" name="tanggal-bkn" class="form-control"></div>
+                                            <br><br>
                                         </div>    
                                         <div class="form-group">
-                                            <label class="control-label" for="tanggal_bkn">Tanggal BKN</label>
-                                            <input class="form-control" id="tanggal_bkn" name="tanggal_bkn" placeholder="MM/DD/YYY" type="text"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Gaji</label>
-                                            <input type="text" name="gaji" class="form-control">
+                                            <label class="col-sm-2">Gaji Pokok</label>
+                                            <div class="col-sm-10"><input type="text" name="gaji" class="form-control"></div>
+                                            <br><br>
                                         </div>       
-                                        <button type="submit" name="kepangkatan-add" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                                        <a href="kepangkatan" class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                                        <button type="submit" name="add" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
+                                        <a href="kepangkatan/<?php echo $_GET['id'];?>" class="btn btn-default waves-effect waves-light">Cancel</a>
                                     </form>
                                 </div>
                             </div>
@@ -104,17 +136,4 @@
         <!-- ============================================================== -->
         <!-- End Page Content -->
         <!-- ============================================================== -->
-
-        <script>
-            $(document).ready(function(){
-                var date_input=$('input[name="tanggal-lahir"]');
-                var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                date_input.datepicker({
-                    format: 'dd/mm/yyyy',
-                    container: container,
-                    todayHighlight: true,
-                    autoclose: true,
-                })
-            })
-        </script>
 

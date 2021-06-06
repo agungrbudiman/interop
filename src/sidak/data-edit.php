@@ -79,13 +79,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-3">Jenis Kelamin</label>
-<!-- <<<<<<< HEAD -->
-                                           <!--  <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Laki-laki">Laki-laki</label>
-                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Perempuan">Perempuan</label> -->
-<!-- ======= -->
                                             <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Laki-laki" <?php echo ($edit->pe_jenis_kelamin=='Laki-laki')?'checked':''?> >Laki-laki</label>
                                             <label class="radio-inline col-sm-2"><input type="radio" name="jenis-kelamin" value="Perempuan" <?php echo ($edit->pe_jenis_kelamin=='Perempuan')?'checked':''?>>Perempuan</label>
-<!-- >>>>>>> ebedia/pendidikan-dan-keluarga -->
                                             <br>
                                         </div>
                                         <div class="form-group">
@@ -149,11 +144,7 @@
                                             <div class="col-sm-10">
                                                 <select class="form-control" name="provinsi" id="provinsi">
                                                 <?php
-// <<<<<<< HEAD
-                                                    // $sql = "SELECT*FROM provinsi LEFT JOIN pegawai USING(pr_id)";
-// =======
                                                     $sql = "SELECT*FROM provinsi ORDER BY pr_nama ASC";
-// >>>>>>> ebedia/pendidikan-dan-keluarga
                                                     $query = $conn->query($sql);
                                                     while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                         if ($edit->pr_id == $data->pr_id) {
@@ -177,18 +168,13 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kabupaten" id="kabupaten">
                                                     <?php
-// <<<<<<< HEAD
-                                                        // $sql = "SELECT*FROM kabupaten LEFT JOIN pegawai USING(kb_id)";
-// =======
                                                         $sql = "SELECT*FROM kabupaten ORDER BY kb_nama ASC";
-// >>>>>>> ebedia/pendidikan-dan-keluarga
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kb_id == $data->kb_id) {
                                                                 echo '
                                                                 <option value='.$data->kb_id.' selected>'.$data->kb_nama.'</option>
                                                                 ';
-// <<<<<<< HEAD
                                                             }
                                                             else{
                                                                 echo ' 
@@ -242,27 +228,12 @@
                                                                 echo ' 
                                                                 <option value='.$data->kl_id.'>'.$data->kl_nama.'</option>
                                                                 ';
-// =======
-// >>>>>>> ebedia/pendidikan-dan-keluarga
                                                             }  
                                                         }
                                                     ?>
                                                 </select>
                                             </div>
                                             <br><br>
-<!-- <<<<<<< HEAD -->
-                                       <!--  </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2">Alamat</label>
-                                            <div class="col-sm-10"><input type="text" name="alamat" class="form-control" value="<?php echo $edit->pe_alamat; ?>"></div>
-                                            <br><br>
-                                        </div> 
-                                        <div class="form-group">
-                                            <label class="col-sm-2">Hobi</label>
-                                            <div class="col-sm-10"><input type="text" name="hobi" class="form-control" value="<?php echo $edit->pe_hobi; ?>"></div>
-                                            <br><br>
-                                        </div> -->
-<!-- ======= -->
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">Kecamatan</label>
@@ -312,7 +283,6 @@
                                             <div class="col-sm-10"><input type="text" name="hobi" class="form-control" value="<?php echo $edit->pe_hobi; ?>"></div>
                                             <br><br>
                                         </div>
-<!-- >>>>>>> ebedia/pendidikan-dan-keluarga -->
                                         <button type="submit" name="edit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
                                         <a href="data" class="btn btn-inverse waves-effect waves-light">Cancel</a>
                                     </form>

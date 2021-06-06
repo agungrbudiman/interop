@@ -146,21 +146,6 @@
                                             </div>
                                             <br><br>
                                         </div>
-<!-- <<<<<<< HEAD -->
-                                        <!-- <div class="form-group">
-                                            <label class="control-label col-sm-2">Kelurahan</label>
-                                            <div class="col-sm-10">          
-                                              <select class="form-control" name="kelurahan" id="kelurahan"></select>
-                                            </div>
-                                            <br><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2">Alamat</label>
-                                            <div class="col-sm-10"><input type="text" name="alamat" class="form-control"></div>
-                                            <br><br>
-                                        </div> 
-                                        <div class="form-group"> -->
-<!-- ======= -->
                                         <div class="form-group">
                                             <label class="control-label col-sm-2">Kelurahan</label>
                                             <div class="col-sm-10">          
@@ -174,7 +159,6 @@
                                             <br><br>
                                         </div> 
                                         <div class="form-group">
-<!-- >>>>>>> ebedia/pendidikan-dan-keluarga -->
                                             <label class="col-sm-2">Hobi</label>
                                             <div class="col-sm-10"><input type="text" name="hobi" class="form-control"></div>
                                             <br><br>
@@ -214,42 +198,6 @@
                     $.ajax({url: "alamat.php?id_kec="+id_kec}).done(function(data){$("#kelurahan").html(data);});
                 });
             });
-
-// <<<<<<< HEAD
-
-            // var ajaxRequest;
-
-            // function getAjax()  //mengecek apakah web browser support AJAX atau tidak
-            // {
-            //    try
-            //    {
-            //         // Opera 8.0+, Firefox, Safari
-            //         ajaxRequest = new XMLHttpRequest();
-            //    }
-            //    catch (e)
-            //    {
-            //         // Internet Explorer Browsers
-            //         try
-            //         {
-            //              ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
-            //         }
-            //         catch (e)
-            //         {
-            //              try
-            //              {
-            //                    ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
-            //              }
-            //              catch (e)
-            //              {
-            //                    // Something went wrong
-            //                    alert("Your browser broke!");
-            //                    return false;
-            //              }
-            //         }
-            //    }
-            // }
-// =======
-// >>>>>>> ebedia/pendidikan-dan-keluarga
 
             var ajaxRequest;
             function getAjax()

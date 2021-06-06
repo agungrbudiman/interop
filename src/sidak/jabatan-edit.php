@@ -1,6 +1,15 @@
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================================================== -->
+        <?php 
+            require_once(__DIR__.'/lib/config.php');
+            if (isset($_GET['id'])) {
+                $id = $_GET['id'];
+                $sql = "SELECT * FROM jabatan WHERE jb_id='$id'";
+                $query = $conn->query($sql);
+                $edit = $query->fetch(PDO::FETCH_OBJ);
+            }
+        ?>
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
@@ -10,7 +19,8 @@
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="index">Home</a></li>
-                            <li><a href="jabatan">Riwayat Jabatan</a></li>
+                            <li><a href="data">Data Pegawai</a></li>
+                            <li><a href="kepangkatan/<?php echo $edit->pe_id;?>">Riwayat Jabatan</a></li>
                             <li class="active">Edit Riwayat Jabatan</li>
                         </ol>
                     </div>
@@ -21,80 +31,100 @@
                             <h3 class="box-title m-b-0">Edit Riwayat Jabatan</h3><br>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <?php 
-                                        require_once(__DIR__.'/lib/config.php');
-                                        if (isset($_GET['id'])) {
-                                            $id = $_GET['id'];
-                                            $sql = "SELECT * FROM data WHERE dt_id='$id'";
-                                            $query = $conn->query($sql);
-                                            $edit = $query->fetch(PDO::FETCH_OBJ);
-                                        }
-                                    ?>
-                                    <form method="post" action="data">
-                                        <input type="hidden" name="dt_id" value="<?php echo $edit->dt_id;?>">
+                                    <form method="post" action="jabatan">
+                                        <input type="hidden" name="pe_id" value="<?php echo $edit->pe_id;?>">
+                                        <input type="hidden" name="jb_id" value="<?php echo $edit->jb_id;?>">
                                         <div class="form-group">
-                                            <label>Jenis Instansi</label>
-                                            <input type="text" name="jenis_instansi" class="form-control" value="<?php echo $edit->dt_name; ?>">
+                                            <label class="col-sm-3">Jenis Instansi</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-instansi" value="Internal" <?php echo ($edit->jb_jenis_instansi=='Internal')?'checked':''?>>Internal</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="jenis-instansi" value="Eksternal" <?php echo ($edit->jb_jenis_instansi=='Eksternal')?'checked':''?>>Eksternal</label>
+                                            <br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Eselon</label>
-                                            <select class="form-control" name="eselon">
-											   <option value='I.a'>I.a</option>
-											   <option value='I.b'>I.b</option>
-											   <option value='II.a'>II.a</option>
-											   <option value='II.b'>II.b</option>
-											   <option value='III.a'>III.a</option>
-											   <option value='III.b'>III.b</option>
-											   <option value='IV.a'>IV.a</option>
-											   <option value='IV.b'>IV.b</option>
-											   <option value='V.a'>V.a</option>
-											 </select>
-                                        </div>    
-                                        <div class="form-group">
-                                            <label>Nama Jabatan</label>
-                                            <input type="text" name="nama_jabatan" class="form-control">
+                                            <label class="col-sm-2">Eselon</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="eselon">
+                                                    <?php
+                                                        require_once(__DIR__.'/lib/config.php');
+                                                        $sql = "SELECT*FROM pangkat";
+                                                        $query = $conn->query($sql);
+                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
+                                                            if ($edit->pa_id == $data->pa_id) {
+                                                                echo '
+                                                                <option value='.$data->pa_id.' selected>'.substr($data->pa_keterangan,0,5).'</option>
+                                                                ';
+                                                            }
+                                                            else{
+                                                                echo ' 
+                                                                <option value='.$data->pa_id.'>'.substr($data->pa_keterangan,0,5).'</option>
+                                                                ';
+                                                            }  
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nama Unit</label>
-                                            <input type="text" name="nama_unit" class="form-control">
+                                            <label class="col-sm-2">Nama Jabatan</label>
+                                            <div class="col-sm-10"><input type="text" name="nama-jabatan" class="form-control" value="<?php echo $edit->jb_nama_jabatan; ?>"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Status Jabatan</label><br>
-                                            <label class="radio-inline"><input type="radio" name="status_jabatan" value="Definitif">Definitif</label>
-                                            <label class="radio-inline"><input type="radio" name="status_jabatan" value="Pelaksana Tugas">Pelaksana Tugas</label>
-                                        </div>   
-                                        <div class="form-group">
-                                            <label class="control-label" for="tmt_golongan">TMT Golongan</label>
-                                            <input class="form-control" id="tmt_golongan" name="tmt_golongan" placeholder="MM/DD/YYY" type="text"/>
+                                            <label class="col-sm-2">Nama Unit</label>
+                                            <div class="col-sm-10"><input type="text" name="nama-unit" class="form-control" value="<?php echo $edit->jb_nama_unit; ?>"></div>
+                                            <br><br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Nomor SK Pengangkatan</label>
-                                            <input type="text" name="no_sk_pengangkatan" class="form-control">
-                                        </div>
-										<div class="form-group">
-                                            <label class="control-label" for="tgl_sk_pengangkatan">Tanggal SK Pengangkatan</label>
-                                            <input class="form-control" id="tgl_sk_pengangkatan" name="tgl_sk_pengangkatan" placeholder="MM/DD/YYY" type="text"/>
-                                        </div>
-										<div class="form-group">
-                                            <label class="control-label" for="tmt_pengangkatan">TMT Pengangkatan</label>
-                                            <input class="form-control" id="tmt_pengangkatan" name="tmt_pengangkatan" placeholder="MM/DD/YYY" type="text"/>
+                                            <label class="col-sm-3">Status Jabatan</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="status-jabatan" value="Definitif" <?php echo ($edit->jb_status_jabatan=='Definitif')?'checked':''?>>Definitif</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="status-jabatan" value="Pelaksana Tugas" <?php echo ($edit->jb_status_jabatan=='Pelaksana Tugas')?'checked':''?>>Pelaksana Tugas</label>
+                                            <br>
                                         </div>
                                         <div class="form-group">
-                                            <label>Aktif Jabatan</label>
-                                            <label class="radio-inline"><input type="radio" name="aktif_jabatan" value="Aktif">Aktif</label>
-                                            <label class="radio-inline"><input type="radio" name="aktif_jabatan" value="Non Aktif">Non Aktif</label>
-                                        </div>										
-										<div class="form-group">
-                                            <label class="control-label" for="tgl_sk_pemberhentian">Tanggal SK Pemberhentian</label>
-                                            <input class="form-control" id="tgl_sk_pemberhentian" name="tgl_sk_pemberhentian" placeholder="MM/DD/YYY" type="text"/>
+                                            <label class="col-sm-2">TMT Golongan</label>
+                                            <div class="col-sm-10"><input type="date" name="tmt-golongan" class="form-control" value="<?php echo $edit->jb_tmt_golongan; ?>"></div>
+                                            <br><br>
                                         </div>
-										<div class="form-group">
-                                            <label class="control-label" for="tmt_pemberhentian">TMT Pemberhentian</label>
-                                            <input class="form-control" id="tmt_pemberhentian" name="tmt_pemberhentian" placeholder="MM/DD/YYY" type="text"/>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Nomor SK Pengangkatan</label>
+                                            <div class="col-sm-10"><input type="text" name="no-sk-pengangkatan" class="form-control" value="<?php echo $edit->jb_no_sk_pengangkatan; ?>"></div>
+                                            <br><br>
                                         </div>
-										
-                                        <button type="submit" name="jabatan-edit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
-                                        <a href="jabatan" class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Tanggal SK Pengangkatan</label>
+                                            <div class="col-sm-10"><input type="date" name="tanggal-sk-pengangkatan" class="form-control" value="<?php echo $edit->jb_tanggal_sk_pengangkatan; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">TMT Pengangkatan</label>
+                                            <div class="col-sm-10"><input type="date" name="tmt-pengangkatan" class="form-control" value="<?php echo $edit->jb_tmt_pengangkatan; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3">Aktif Jabatan</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="aktif-jabatan" value="Aktif" <?php echo ($edit->jb_aktif_jabatan=='Aktif')?'checked':''?>>Aktif</label>
+                                            <label class="radio-inline col-sm-2"><input type="radio" name="aktif-jabatan" value="Non Aktif" <?php echo ($edit->jb_aktif_jabatan=='Non Aktif')?'checked':''?>>Non Aktif</label>
+                                            <br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Nomor SK Pemberhentian</label>
+                                            <div class="col-sm-10"><input type="text" name="no-sk-pemberhentian" class="form-control" value="<?php echo $edit->jb_no_sk_pemberhentian; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">Tanggal SK Pemberhentian</label>
+                                            <div class="col-sm-10"><input type="date" name="tanggal-sk-pemberhentian" class="form-control" value="<?php echo $edit->jb_tanggal_sk_pemberhentian; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2">TMT Pemberhentian</label>
+                                            <div class="col-sm-10"><input type="date" name="tmt-pemberhentian" class="form-control" value="<?php echo $edit->jb_tmt_pemberhentian; ?>"></div>
+                                            <br><br>
+                                        </div>
+                                        <button type="submit" name="edit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
+                                        <a href="jabatan/<?php echo $edit->pe_id;?>" class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                                        <button type="submit" name="delete" class="btn btn-danger waves-effect waves-light m-r-10 pull-right">Delete</button>
                                     </form>
                                 </div>
                             </div>

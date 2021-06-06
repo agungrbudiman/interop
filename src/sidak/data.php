@@ -93,11 +93,7 @@
                                 $alamat = $_POST['alamat'];
                                 $hobi = $_POST['hobi'];
 
-// <<<<<<< HEAD
-                                // $sql = "UPDATE pegawai SET pe_nama = '$nama', pe_nip = '$nip', pe_pangkat = '$pangkat', pe_tempat_lahir = '$tempat_lahir', pe_tanggal_lahir = '$tanggal_lahir', pe_jenis_kelamin = '$jenis_kelamin', pe_agama = '$agama', pe_status = '$status', pe_no_hp = '$no_hp', pe_email = '$email', pe_no_bpjs = '$no_bpjs', pe_provinsi = '$provinsi', pe_kabupaten = '$kabupaten', pe_kecamatan = '$kecamatan', pe_kelurahan = '$kelurahan', pe_alamat = '$alamat', pe_hobi = '$hobi' WHERE pe_id = '$id'";
-// =======
                                 $sql = "UPDATE pegawai SET pe_nama = '$nama', pe_nip = '$nip', pa_id = '$pangkat', pe_tempat_lahir = '$tempat_lahir', pe_tanggal_lahir = '$tanggal_lahir', pe_jenis_kelamin = '$jenis_kelamin', ag_id = '$agama', st_id = '$status', pe_no_hp = '$no_hp', pe_email = '$email', pe_no_bpjs = '$no_bpjs', pr_id = '$provinsi', kb_id = '$kabupaten', kc_id = '$kecamatan', kl_id = '$kelurahan', pe_alamat = '$alamat', pe_hobi = '$hobi' WHERE pe_id = '$id'";
-// >>>>>>> ebedia/pendidikan-dan-keluarga
                                 $query = $conn->query($sql);
                                 if ($query) {
                                     echo "
@@ -131,12 +127,22 @@
                                             <th>NIP</th>
                                             <th>Pangkat</th>
                                             <th>Jenis Kelamin</th>
+                                            <th>Agama</th>
+                                            <th>Status</th>
+                                            <th>No Hp</th>
+                                            <th>Email</th>
+                                            <th>Provinsi</th>
+                                            <th>Kabupaten</th>
+                                            <th>Kecamatan</th>
+                                            <th>Kelurahan</th>
+                                            <th>Alamat</th>
+                                            <th>Hobi</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                            $sql = "SELECT * FROM pegawai JOIN pangkat USING(pa_id)";
+                                            $sql = "SELECT * FROM pegawai JOIN pangkat USING(pa_id) JOIN agama USING(ag_id) JOIN status USING(st_id) JOIN provinsi USING(pr_id) JOIN kabupaten USING(kb_id) JOIN kecamatan USING(kc_id) JOIN kelurahan USING(kl_id) ORDER BY pe_id";
                                             $query = $conn->query($sql);
                                             $check = $query->rowCount();
                                             if ($check >= 1) {
@@ -158,6 +164,16 @@
                                                     <td>'.$data->pe_nip.'</td>
                                                     <td>'.$data->pa_keterangan.'</td>
                                                     <td>'.$data->pe_jenis_kelamin.'</td>
+                                                    <td>'.$data->ag_keterangan.'</td>
+                                                    <td>'.$data->st_keterangan.'</td>
+                                                    <td>'.$data->pe_no_hp.'</td>
+                                                    <td>'.$data->pe_email.'</td>
+                                                    <td>'.$data->pr_nama.'</td>
+                                                    <td>'.$data->kb_nama.'</td>
+                                                    <td>'.$data->kc_nama.'</td>
+                                                    <td>'.$data->kl_nama.'</td>
+                                                    <td>'.$data->pe_alamat.'</td>
+                                                    <td>'.$data->pe_hobi.'</td>
                                                     <td>
                                                         <a href="data-edit/'.$data->pe_id.'" class="btn btn-default waves-effect waves-light"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i></a>
                                                         <a href="data/'.$data->pe_id.'" class="btn btn-default waves-effect waves-light"><i class="fa fa-trash fa-fw" aria-hidden="true"></i></a>
@@ -168,7 +184,7 @@
                                             else{
                                                 echo "
                                                 <tr>
-                                                <td colspan='6' style='text-align:center;'>Table is empty</td>
+                                                <td colspan='16' style='text-align:center;'>Table is empty</td>
                                                 </tr>";
                                             }
                                         ?>

@@ -132,7 +132,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <a href="keluarga-add/<?php echo $id ?>" class="btn btn-default pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"><i class="fa fa-plus-square fa-fw" aria-hidden="true"></i> Add Data</a>
+                            <a href="keluarga-add/<?php echo $id ?>" class="btn btn-default pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light"><i class="fa fa-plus-square fa-fw" aria-hidden="true"></i> Tambah Data</a>
                             <p class="text-muted">Pada halaman ini anda dapat mengelola data keluarga setiap pegawai.</p><br>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="table_id">
@@ -149,17 +149,23 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql = "SELECT * FROM keluarga JOIN pegawai USING(pe_id) JOIN tanggungan USING(ta_id) WHERE pe_id='$id'";
+                                            $sql = "SELECT * FROM keluarga JOIN tanggungan USING(ta_id) WHERE pe_id='$id'";
                                             $query = $conn->query($sql);
                                             $check = $query->rowCount();
                                             if ($check >= 1) {
                                                 while($data = $query->fetch(PDO::FETCH_OBJ)){
+                                                    if ($data->ke_tanggal_menikah == '0000-00-00') {
+                                                        $data->ke_tanggal_menikah = '-';
+                                                    }
+                                                    else{
+                                                        $data->ke_tanggal_menikah = date("d/m/Y", strtotime($data->ke_tanggal_menikah));
+                                                    }
                                                     echo '
                                                     <tr>
                                                     <td>'.$data->ke_nama.'</td>
                                                     <td>'.$data->ta_keterangan.'</td>
                                                     <td>'.$data->ke_jenis_kelamin.'</td>
-                                                    <td>'.$data->ke_tanggal_lahir.'</td>
+                                                    <td>'.date("d/m/Y", strtotime($data->ke_tanggal_lahir)).'</td>
                                                     <td>'.$data->ke_tanggal_menikah.'</td>
                                                     <td>'.$data->ke_tunjangan.'</td>
                                                     <td>

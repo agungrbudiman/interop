@@ -12,14 +12,14 @@
                             <li><a href="index">Home</a></li>
                             <li><a href="data">Data Pegawai</a></li>
                             <li><a href="keluarga/<?php echo $_GET['id'];?>">Data Keluarga</a></li>
-                            <li class="active">Add Data Keluarga</li>
+                            <li class="active">Tambah Data Keluarga</li>
                         </ol>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <h3 class="box-title m-b-0">Add Data Keluarga</h3><br>
+                            <h3 class="box-title m-b-0">Tambah Data Keluarga</h3><br>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form method="post" action="keluarga">
@@ -70,7 +70,7 @@
                                             <br>
                                         </div> 
                                         <button type="submit" name="add" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
-                                        <a href="keluarga" class="btn btn-default waves-effect waves-light">Cancel</a>
+                                        <a href="keluarga/<?php echo $_GET['id'];?>" class="btn btn-default waves-effect waves-light">Cancel</a>
                                     </form>
                                 </div>
                             </div>

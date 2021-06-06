@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2021 at 11:53 PM
+-- Generation Time: Jun 06, 2021 at 05:18 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -61,6 +61,68 @@ INSERT INTO `agama` (`ag_id`, `ag_keterangan`) VALUES
 (4, 'Hindu'),
 (5, 'Buddha'),
 (6, 'Konghuchu');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jabatan`
+--
+
+CREATE TABLE `jabatan` (
+  `jb_id` int(11) NOT NULL,
+  `pe_id` int(11) NOT NULL,
+  `jb_jenis_instansi` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `pa_id` int(11) NOT NULL,
+  `jb_nama_jabatan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `jb_nama_unit` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `jb_status_jabatan` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `jb_tmt_golongan` text COLLATE utf8_unicode_ci NOT NULL,
+  `jb_no_sk_pengangkatan` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `jb_tanggal_sk_pengangkatan` date NOT NULL,
+  `jb_tmt_pengangkatan` date NOT NULL,
+  `jb_aktif_jabatan` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `jb_no_sk_pemberhentian` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `jb_tanggal_sk_pemberhentian` date NOT NULL,
+  `jb_tmt_pemberhentian` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `jabatan`
+--
+
+INSERT INTO `jabatan` (`jb_id`, `pe_id`, `jb_jenis_instansi`, `pa_id`, `jb_nama_jabatan`, `jb_nama_unit`, `jb_status_jabatan`, `jb_tmt_golongan`, `jb_no_sk_pengangkatan`, `jb_tanggal_sk_pengangkatan`, `jb_tmt_pengangkatan`, `jb_aktif_jabatan`, `jb_no_sk_pemberhentian`, `jb_tanggal_sk_pemberhentian`, `jb_tmt_pemberhentian`) VALUES
+(1, 1, 'Internal', 5, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2013-06-18', '1001 SKPA 2013', '2013-06-10', '2013-06-19', 'Aktif', '1001 SKPB 2015', '2015-06-30', '2015-06-29'),
+(2, 1, 'Internal', 6, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2015-06-18', '1002 SKPA 2015', '2015-06-10', '2015-06-19', 'Aktif', '1002 SKPB 2017', '2017-06-30', '2017-06-29'),
+(3, 1, 'Internal', 7, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2017-06-18', '1003 SKPA 2017', '2017-06-10', '2017-06-19', 'Aktif', '1003 SKPB 2015', '2019-06-30', '2019-06-29'),
+(4, 2, 'Internal', 5, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2013-06-18', '1004 SKPA 2013', '2013-06-10', '2013-06-19', 'Aktif', '1004 SKPB 2015', '2015-06-30', '2015-06-29'),
+(5, 2, 'Internal', 6, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2015-06-18', '1005 SKPA 2015', '2015-06-10', '2015-06-19', 'Aktif', '1005 SKPB 2017', '2017-06-30', '2017-06-29'),
+(6, 2, 'Internal', 7, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2017-06-18', '1006 SKPA 2017', '2017-06-10', '2017-06-19', 'Aktif', '1006 SKPB 2015', '2019-06-30', '2019-06-29'),
+(7, 3, 'Internal', 5, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2013-06-18', '1007 SKPA 2013', '2013-06-10', '2013-06-19', 'Aktif', '1007 SKPB 2015', '2015-06-30', '2015-06-29'),
+(8, 3, 'Internal', 6, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2015-06-18', '1008 SKPA 2015', '2015-06-10', '2015-06-19', 'Aktif', '1008 SKPB 2017', '2017-06-30', '2017-06-29'),
+(9, 4, 'Internal', 5, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2013-06-18', '1009 SKPA 2013', '2013-06-10', '2013-06-19', 'Aktif', '1009 SKPB 2015', '2015-06-30', '2015-06-29'),
+(10, 4, 'Internal', 6, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2015-06-18', '1010 SKPA 2015', '2015-06-10', '2015-06-19', 'Aktif', '1010 SKPB 2017', '2017-06-30', '2017-06-29'),
+(11, 5, 'Internal', 5, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2013-06-18', '1011 SKPA 2013', '2013-06-10', '2013-06-19', 'Aktif', '1011 SKPB 2015', '2015-06-30', '2015-06-29'),
+(12, 5, 'Internal', 6, 'Kepala Sub Bagian', 'Tata Usaha Kepegawaian', 'Definitif', '2015-06-18', '1012 SKPA 2015', '2015-06-10', '2015-06-19', 'Aktif', '1012 SKPB 2017', '2017-06-30', '2017-06-29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_kepangkatan`
+--
+
+CREATE TABLE `jenis_kepangkatan` (
+  `jp_id` int(11) NOT NULL,
+  `jp_keterangan` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `jenis_kepangkatan`
+--
+
+INSERT INTO `jenis_kepangkatan` (`jp_id`, `jp_keterangan`) VALUES
+(1, 'CPNS'),
+(2, 'PNS'),
+(3, 'KP Reguler');
 
 -- --------------------------------------------------------
 
@@ -7853,7 +7915,19 @@ CREATE TABLE `keluarga` (
 --
 
 INSERT INTO `keluarga` (`ke_id`, `pe_id`, `ke_nama`, `ta_id`, `ke_jenis_kelamin`, `ke_tanggal_lahir`, `ke_tanggal_menikah`, `ke_tunjangan`) VALUES
-(1, 1, 'Sulistyowati, S.E.', 1, 'Perempuan', '1988-11-16', '2015-06-09', 'Ya');
+(1, 1, 'Sulistyowati, S.E.', 1, 'Perempuan', '1988-11-16', '2013-06-09', 'Ya'),
+(2, 1, 'Ahmad Mubarok', 3, 'Laki-laki', '2015-11-16', '0000-00-00', 'Ya'),
+(3, 1, 'Ayu Dini', 4, 'Perempuan', '2016-10-16', '0000-00-00', 'Ya'),
+(4, 2, 'Sekar Putri, S.T.', 1, 'Perempuan', '1985-05-26', '2010-04-09', 'Ya'),
+(5, 2, 'Laila Nurjanah', 3, 'Perempuan', '2011-01-01', '0000-00-00', 'Ya'),
+(6, 3, 'Bambang Sulistyo, S.T.', 2, 'Laki-laki', '1980-09-09', '2013-07-09', 'Ya'),
+(7, 3, 'Danang Sujati', 3, 'Laki-laki', '2014-01-01', '0000-00-00', 'Ya'),
+(8, 3, 'Husna Sabil', 4, 'Perempuan', '2015-02-02', '0000-00-00', 'Ya'),
+(9, 4, 'Dwi Larasati, S.E.', 1, 'Perempuan', '1985-05-29', '2010-04-30', 'Ya'),
+(10, 4, 'Putra Manggala', 3, 'Laki-laki', '2011-01-01', '0000-00-00', 'Ya'),
+(11, 6, 'Wulan Sari, S.H.', 1, 'Perempuan', '1988-11-16', '2014-07-09', 'Ya'),
+(12, 6, 'Rahmat Angajaya', 3, 'Laki-laki', '2015-11-16', '0000-00-00', 'Ya'),
+(13, 6, 'Putri Berlian', 4, 'Perempuan', '2019-10-16', '0000-00-00', 'Ya');
 
 -- --------------------------------------------------------
 
@@ -66568,6 +66642,72 @@ INSERT INTO `kelurahan` (`kl_id`, `kc_id`, `kl_nama`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `kepangkatan`
+--
+
+CREATE TABLE `kepangkatan` (
+  `kp_id` int(11) NOT NULL,
+  `pe_id` int(11) NOT NULL,
+  `jp_id` int(11) NOT NULL,
+  `kp_no_sk` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `kp_oleh` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `kp_tanggal_sk` date NOT NULL,
+  `tp_id` int(11) NOT NULL,
+  `pa_id` int(11) NOT NULL,
+  `kp_tmt_golongan` date NOT NULL,
+  `kp_tahun_masa_kerja` int(11) NOT NULL,
+  `kp_bulan_masa_kerja` int(11) NOT NULL,
+  `kp_no_bkn` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `kp_tanggal_bkn` date NOT NULL,
+  `kp_gaji` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `kepangkatan`
+--
+
+INSERT INTO `kepangkatan` (`kp_id`, `pe_id`, `jp_id`, `kp_no_sk`, `kp_oleh`, `kp_tanggal_sk`, `tp_id`, `pa_id`, `kp_tmt_golongan`, `kp_tahun_masa_kerja`, `kp_bulan_masa_kerja`, `kp_no_bkn`, `kp_tanggal_bkn`, `kp_gaji`) VALUES
+(1, 1, 2, '1001IIIA', 'Kepala Bagian', '2005-06-01', 4, 1, '2005-06-02', 2, 1, 'BKN1001', '2005-06-03', 2579400),
+(2, 1, 2, '1001IIIB', 'Kepala Bagian', '2007-06-01', 4, 2, '2007-06-02', 2, 1, 'BKN1002', '2007-06-03', 2688500),
+(3, 1, 2, '1001IIIC', 'Kepala Bagian', '2009-06-01', 4, 3, '2009-06-02', 2, 1, 'BKN1003', '2009-06-03', 2802300),
+(4, 1, 2, '1001IIID', 'Kepala Bagian', '2011-06-01', 4, 4, '2011-06-02', 2, 1, 'BKN1004', '2011-06-03', 2920800),
+(5, 1, 2, '1001IVA', 'Kepala Bagian', '2013-06-01', 4, 5, '2013-06-02', 2, 1, 'BKN1005', '2013-06-03', 3044300),
+(6, 1, 2, '1001IVB', 'Kepala Bagian', '2015-06-01', 4, 6, '2015-06-02', 2, 1, 'BKN1006', '2015-06-03', 3173100),
+(7, 1, 2, '1001IVC', 'Kepala Bagian', '2017-06-01', 5, 7, '2017-06-02', 2, 1, 'BKN1007', '2017-06-03', 3307300),
+(8, 1, 2, '1001IVD', 'Kepala Bagian', '2019-06-01', 5, 8, '2019-06-02', 2, 1, 'BKN1008', '2019-06-03', 3447200),
+(9, 2, 2, '1002IIIA', 'Kepala Bagian', '2000-06-01', 4, 1, '2000-06-02', 2, 1, 'BKN1009', '2000-06-03', 2579400),
+(10, 2, 2, '1002IIIB', 'Kepala Bagian', '2002-06-01', 4, 2, '2002-06-02', 2, 1, 'BKN1010', '2002-06-03', 2688500),
+(11, 2, 2, '1002IIIC', 'Kepala Bagian', '2004-06-01', 4, 3, '2001-06-02', 2, 1, 'BKN1011', '2004-06-03', 2802300),
+(12, 2, 2, '1002IIID', 'Kepala Bagian', '2006-06-01', 4, 4, '2006-06-02', 2, 1, 'BKN1012', '2006-06-03', 2920800),
+(13, 2, 2, '1002IVA', 'Kepala Bagian', '2008-06-01', 4, 5, '2008-06-02', 2, 1, 'BKN1013', '2008-06-03', 3044300),
+(14, 2, 2, '1002IVB', 'Kepala Bagian', '2010-06-01', 4, 6, '2010-06-02', 2, 1, 'BKN1014', '2010-06-03', 3173100),
+(15, 2, 2, '1002IVC', 'Kepala Bagian', '2012-06-01', 5, 7, '2012-06-02', 2, 1, 'BKN1015', '2012-06-03', 3307300),
+(16, 2, 2, '1002IVD', 'Kepala Bagian', '2016-06-01', 5, 8, '2016-06-02', 2, 1, 'BKN1016', '2016-06-03', 3447200),
+(17, 3, 2, '1003IIIA', 'Kepala Bagian', '2010-06-01', 4, 1, '2010-06-02', 2, 1, 'BKN1017', '2010-06-03', 2579400),
+(18, 3, 2, '1003IIIB', 'Kepala Bagian', '2012-06-01', 4, 2, '2012-06-02', 2, 1, 'BKN1018', '2012-06-03', 2688500),
+(19, 3, 2, '1003IIIC', 'Kepala Bagian', '2014-06-01', 4, 3, '2014-06-02', 2, 1, 'BKN1019', '2014-06-03', 2802300),
+(20, 3, 2, '1003IIID', 'Kepala Bagian', '2016-06-01', 4, 4, '2016-06-02', 2, 1, 'BKN1020', '2016-06-03', 2920800),
+(21, 3, 2, '1003IVA', 'Kepala Bagian', '2018-06-01', 4, 5, '2018-06-02', 2, 1, 'BKN1021', '2018-06-03', 3044300),
+(22, 3, 2, '1003IVB', 'Kepala Bagian', '2020-06-01', 4, 6, '2020-06-02', 2, 1, 'BKN1022', '2020-06-03', 3173100),
+(23, 3, 2, '1003IVC', 'Kepala Bagian', '2021-06-01', 5, 7, '2021-06-02', 2, 1, 'BKN1023', '2021-06-03', 3307300),
+(24, 4, 2, '1004IIIA', 'Kepala Bagian', '2005-06-01', 4, 1, '2010-06-02', 2, 1, 'BKN1024', '2005-06-03', 2579400),
+(25, 4, 2, '1004IIIB', 'Kepala Bagian', '2007-06-01', 4, 2, '2012-06-02', 2, 1, 'BKN1025', '2007-06-03', 2688500),
+(26, 4, 2, '1004IIIC', 'Kepala Bagian', '2009-06-01', 4, 3, '2014-06-02', 2, 1, 'BKN1026', '2009-06-03', 2802300),
+(27, 4, 2, '1004IIID', 'Kepala Bagian', '2011-06-01', 4, 4, '2016-06-02', 2, 1, 'BKN1027', '2011-06-03', 2920800),
+(28, 4, 2, '1004IVA', 'Kepala Bagian', '2013-06-01', 4, 5, '2018-06-02', 2, 1, 'BKN1028', '2013-06-03', 3044300),
+(29, 4, 2, '1004IVB', 'Kepala Bagian', '2014-06-01', 4, 6, '2020-06-02', 2, 1, 'BKN1029', '2014-06-03', 3173100),
+(30, 4, 2, '1004IVC', 'Kepala Bagian', '2017-06-01', 5, 7, '2021-06-02', 2, 1, 'BKN1030', '2017-06-03', 3307300),
+(31, 5, 2, '1005IIIA', 'Kepala Bagian', '2010-06-01', 4, 1, '2010-06-02', 2, 1, 'BKN1031', '2010-06-03', 2579400),
+(32, 5, 2, '1005IIIB', 'Kepala Bagian', '2012-06-01', 4, 2, '2012-06-02', 2, 1, 'BKN1032', '2012-06-03', 2688500),
+(33, 5, 2, '1005IIIC', 'Kepala Bagian', '2014-06-01', 4, 3, '2014-06-02', 2, 1, 'BKN1033', '2014-06-03', 2802300),
+(34, 5, 2, '1005IIID', 'Kepala Bagian', '2016-06-01', 4, 4, '2016-06-02', 2, 1, 'BKN1034', '2016-06-03', 2920800),
+(35, 5, 2, '1005IVA', 'Kepala Bagian', '2018-06-01', 4, 5, '2018-06-02', 2, 1, 'BKN1035', '2018-06-03', 3044300),
+(36, 5, 2, '1005IVB', 'Kepala Bagian', '2020-06-01', 4, 6, '2020-06-02', 2, 1, 'BKN1036', '2020-06-03', 3173100),
+(37, 5, 2, '1005IVC', 'Kepala Bagian', '2021-06-01', 5, 7, '2021-06-02', 2, 1, 'BKN1037', '2021-06-03', 3307300);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pangkat`
 --
 
@@ -66725,35 +66865,36 @@ CREATE TABLE `riwayat_pendidikan` (
 --
 
 INSERT INTO `riwayat_pendidikan` (`rp_id`, `pe_id`, `tp_id`, `rp_negara`, `rp_sekolah`, `rp_tahun_lulus`, `rp_no_ijazah`, `rp_jurusan`, `rp_bidang`, `rp_gelar`, `rp_bkn`) VALUES
-(2, 26, 1, 'Indonesia', 'SD Negeri I Jakarta', 2002, 'SD001IJZH', '-', '-', '-', 'Ya'),
-(5, 26, 2, 'Indonesia', 'SMP Negeri 2 Jakarta', 2005, 'SMP001IJZH', '-', '-', '-', 'Ya'),
-(6, 26, 3, 'Indonesia', 'SMA Negeri 3 Jakarta', 2008, 'SMA001IJZH', 'IPA', '-', '-', 'Ya'),
-(7, 26, 4, 'Indonesia', 'Universitas Gadjah Mada', 2012, 'S1001IJZH', 'Teknik Elektro ', 'Teknik', 'S.T.', 'Ya'),
-(8, 1, 1, 'Indonesia', 'SD Negeri 3 Jakarta', 1992, 'SD002IJZH', '-', '-', '-', 'Ya'),
-(9, 1, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 1995, 'SMP002IJZH', '-', '-', '-', 'Ya'),
-(10, 1, 3, 'Indonesia', 'SMA Negeri 3 Jakarta', 1998, 'SMA002IJZH', 'IPS', '-', '-', 'Ya'),
-(11, 1, 4, 'Indonesia', 'Universitas Indonesia', 2002, 'S1002IJZH', 'Hukum ', 'Hukum', 'S.H.', 'Ya'),
-(12, 1, 5, 'Indonesia', 'Universitas Indonesia', 2004, 'S2002IJZH', 'Ilmu Hukum ', 'Hukum', 'M.H.', 'Ya'),
-(13, 2, 1, 'Indonesia', 'SD Negeri 5 Bandung', 1987, 'SD003IJZH', '-', '-', '-', 'Ya'),
-(14, 2, 2, 'Indonesia', 'SMP Negeri 1 Bandung', 1990, 'SMP003IJZH', '-', '-', '-', 'Ya'),
-(15, 2, 3, 'Indonesia', 'SMA Negeri 7 Bandung', 1993, 'SMA003IJZH', 'IPS', '-', '-', 'Ya'),
-(16, 2, 4, 'Indonesia', 'Universitas Pendidikan Indonesia', 1997, 'S1003IJZH', 'Pendidikan Akutansi ', 'Ekonomi', 'S.Pd.', 'Ya'),
-(17, 2, 5, 'Indonesia', 'Universitas Pendidikan Indonesia', 2000, 'S2003IJZH', 'Pendidikan Akutansi', 'Ekonomi', 'M.Pd.', 'Ya'),
-(18, 3, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1997, 'SD004IJZH', '-', '-', '-', 'Ya'),
-(19, 3, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 2000, 'SMP004IJZH', '-', '-', '-', 'Ya'),
-(20, 3, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 2003, 'SMA004IJZH', 'IPS', '-', '-', 'Ya'),
-(21, 3, 4, 'Indonesia', 'Universitas Indonesia', 2007, 'S1004IJZH', 'Akutansi ', 'Ekonomi', 'S.E.', 'Ya'),
-(22, 3, 5, 'Indonesia', 'Universitas Indonesia', 2009, 'S2004IJZH', 'Ekonomi', 'Ekonomi', 'M.Si.', 'Ya'),
-(23, 4, 1, 'Indonesia', 'SD Negeri 5 Bandung', 1991, 'SD005IJZH', '-', '-', '-', 'Ya'),
-(24, 4, 2, 'Indonesia', 'SMP Negeri 1 Bandung', 1994, 'SMP005IJZH', '-', '-', '-', 'Ya'),
-(25, 4, 3, 'Indonesia', 'SMA Negeri 7 Bandung', 1997, 'SMA005IJZH', 'IPS', '-', '-', 'Ya'),
-(26, 4, 4, 'Indonesia', 'Universitas Indonesia', 2001, 'S1005IJZH', 'Hukum', 'Hukum', 'S.H.', 'Ya'),
-(27, 4, 5, 'Indonesia', 'Universitas Indonesia', 2003, 'S2005IJZH', 'Hukum', 'Hukum', 'M.H.', 'Ya'),
-(28, 6, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1987, 'SD006IJZH', '-', '-', '-', 'Ya'),
-(29, 6, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 1990, 'SMP006IJZH', '-', '-', '-', 'Ya'),
-(30, 6, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 1993, 'SMA006IJZH', 'IPS', '-', '-', 'Ya'),
-(31, 6, 4, 'Indonesia', 'Universitas Indonesia', 1997, 'S1006IJZH', 'Hukum', 'Hukum', 'S.H.', 'Ya'),
-(32, 6, 5, 'Indonesia', 'Universitas Indonesia', 2000, 'S2006IJZH', 'Ekonomi Manajemen', 'Hukum', 'M.M.', 'Ya');
+(1, 1, 1, 'Indonesia', 'SD Negeri 3 Jakarta', 1992, 'SD001IJZH', '-', '-', '-', 'Ya'),
+(2, 1, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 1995, 'SMP001IJZH', '-', '-', '-', 'Ya'),
+(3, 1, 3, 'Indonesia', 'SMA Negeri 3 Jakarta', 1998, 'SMA001IJZH', 'IPS', '-', '-', 'Ya'),
+(4, 1, 4, 'Indonesia', 'Universitas Indonesia', 2002, 'S1001IJZH', 'Hukum ', 'Hukum', 'S.H.', 'Ya'),
+(5, 1, 5, 'Indonesia', 'Universitas Indonesia', 2004, 'S2001IJZH', 'Ilmu Hukum ', 'Hukum', 'M.H.', 'Ya'),
+(6, 2, 1, 'Indonesia', 'SD Negeri 5 Bandung', 1987, 'SD002IJZH', '-', '-', '-', 'Ya'),
+(7, 2, 2, 'Indonesia', 'SMP Negeri 1 Bandung', 1990, 'SMP002IJZH', '-', '-', '-', 'Ya'),
+(8, 2, 3, 'Indonesia', 'SMA Negeri 7 Bandung', 1993, 'SMA002IJZH', 'IPS', '-', '-', 'Ya'),
+(9, 2, 4, 'Indonesia', 'Universitas Pendidikan Indonesia', 1997, 'S1002IJZH', 'Pendidikan Akutansi ', 'Ekonomi', 'S.Pd.', 'Ya'),
+(10, 2, 5, 'Indonesia', 'Universitas Pendidikan Indonesia', 2000, 'S2002IJZH', 'Pendidikan Akutansi', 'Ekonomi', 'M.Pd.', 'Ya'),
+(11, 3, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1997, 'SD003IJZH', '-', '-', '-', 'Ya'),
+(12, 3, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 2000, 'SMP003IJZH', '-', '-', '-', 'Ya'),
+(13, 3, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 2003, 'SMA003IJZH', 'IPS', '-', '-', 'Ya'),
+(14, 3, 4, 'Indonesia', 'Universitas Indonesia', 2007, 'S1003IJZH', 'Akutansi ', 'Ekonomi', 'S.E.', 'Ya'),
+(15, 3, 5, 'Indonesia', 'Universitas Indonesia', 2009, 'S2003IJZH', 'Ekonomi', 'Ekonomi', 'M.Si.', 'Ya'),
+(16, 4, 1, 'Indonesia', 'SD Negeri 5 Bandung', 1991, 'SD004IJZH', '-', '-', '-', 'Ya'),
+(17, 4, 2, 'Indonesia', 'SMP Negeri 1 Bandung', 1994, 'SMP004IJZH', '-', '-', '-', 'Ya'),
+(18, 4, 3, 'Indonesia', 'SMA Negeri 7 Bandung', 1997, 'SMA004IJZH', 'IPS', '-', '-', 'Ya'),
+(19, 4, 4, 'Indonesia', 'Universitas Indonesia', 2001, 'S1004IJZH', 'Hukum', 'Hukum', 'S.H.', 'Ya'),
+(20, 4, 5, 'Indonesia', 'Universitas Indonesia', 2003, 'S2004IJZH', 'Hukum', 'Hukum', 'M.H.', 'Ya'),
+(21, 5, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1997, 'SD005IJZH', '-', '-', '-', 'Ya'),
+(22, 5, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 2000, 'SMP005IJZH', '-', '-', '-', 'Ya'),
+(23, 5, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 2003, 'SMA005IJZH', 'IPS', '-', '-', 'Ya'),
+(24, 5, 4, 'Indonesia', 'Universitas Indonesia', 2007, 'S1005IJZH', 'Akutansi ', 'Ekonomi', 'S.E.', 'Ya'),
+(25, 5, 5, 'Indonesia', 'Universitas Indonesia', 2009, 'S2005IJZH', 'Ekonomi', 'Ekonomi', 'M.Si.', 'Ya'),
+(26, 6, 1, 'Indonesia', 'SD Negeri 5 Jakarta', 1987, 'SD006IJZH', '-', '-', '-', 'Ya'),
+(27, 6, 2, 'Indonesia', 'SMP Negeri 1 Jakarta', 1990, 'SMP006IJZH', '-', '-', '-', 'Ya'),
+(28, 6, 3, 'Indonesia', 'SMA Negeri 7 Jakarta', 1993, 'SMA006IJZH', 'IPS', '-', '-', 'Ya'),
+(29, 6, 4, 'Indonesia', 'Universitas Indonesia', 1997, 'S1006IJZH', 'Hukum', 'Hukum', 'S.H.', 'Ya'),
+(30, 6, 5, 'Indonesia', 'Universitas Indonesia', 2000, 'S2006IJZH', 'Ekonomi Manajemen', 'Hukum', 'M.M.', 'Ya');
 
 -- --------------------------------------------------------
 
@@ -66859,6 +67000,20 @@ ALTER TABLE `agama`
   ADD PRIMARY KEY (`ag_id`);
 
 --
+-- Indexes for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  ADD PRIMARY KEY (`jb_id`),
+  ADD KEY `pe_id` (`pe_id`),
+  ADD KEY `pa_id` (`pa_id`);
+
+--
+-- Indexes for table `jenis_kepangkatan`
+--
+ALTER TABLE `jenis_kepangkatan`
+  ADD PRIMARY KEY (`jp_id`);
+
+--
 -- Indexes for table `kabupaten`
 --
 ALTER TABLE `kabupaten`
@@ -66886,6 +67041,16 @@ ALTER TABLE `keluarga`
 ALTER TABLE `kelurahan`
   ADD PRIMARY KEY (`kl_id`),
   ADD KEY `villages_district_id_index` (`kc_id`);
+
+--
+-- Indexes for table `kepangkatan`
+--
+ALTER TABLE `kepangkatan`
+  ADD PRIMARY KEY (`kp_id`),
+  ADD KEY `pe_id` (`pe_id`),
+  ADD KEY `jp_id` (`jp_id`),
+  ADD KEY `tp_id` (`tp_id`),
+  ADD KEY `pa_id` (`pa_id`);
 
 --
 -- Indexes for table `pangkat`
@@ -66962,10 +67127,28 @@ ALTER TABLE `agama`
   MODIFY `ag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  MODIFY `jb_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `jenis_kepangkatan`
+--
+ALTER TABLE `jenis_kepangkatan`
+  MODIFY `jp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `keluarga`
 --
 ALTER TABLE `keluarga`
-  MODIFY `ke_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ke_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `kepangkatan`
+--
+ALTER TABLE `kepangkatan`
+  MODIFY `kp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `pangkat`
@@ -66977,13 +67160,13 @@ ALTER TABLE `pangkat`
 -- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
-  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pendidikan`
 --
 ALTER TABLE `riwayat_pendidikan`
-  MODIFY `rp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `rp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `status`
@@ -67014,6 +67197,13 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `jabatan`
+--
+ALTER TABLE `jabatan`
+  ADD CONSTRAINT `jabatan_ibfk_1` FOREIGN KEY (`pe_id`) REFERENCES `pegawai` (`pe_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `jabatan_ibfk_2` FOREIGN KEY (`pa_id`) REFERENCES `pangkat` (`pa_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `kabupaten`
 --
 ALTER TABLE `kabupaten`
@@ -67037,6 +67227,15 @@ ALTER TABLE `keluarga`
 --
 ALTER TABLE `kelurahan`
   ADD CONSTRAINT `villages_district_id_foreign` FOREIGN KEY (`kc_id`) REFERENCES `kecamatan` (`kc_id`);
+
+--
+-- Constraints for table `kepangkatan`
+--
+ALTER TABLE `kepangkatan`
+  ADD CONSTRAINT `kepangkatan_ibfk_1` FOREIGN KEY (`pe_id`) REFERENCES `pegawai` (`pe_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kepangkatan_ibfk_2` FOREIGN KEY (`jp_id`) REFERENCES `jenis_kepangkatan` (`jp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kepangkatan_ibfk_3` FOREIGN KEY (`tp_id`) REFERENCES `tingkat_pendidikan` (`tp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `kepangkatan_ibfk_4` FOREIGN KEY (`pa_id`) REFERENCES `pangkat` (`pa_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pegawai`

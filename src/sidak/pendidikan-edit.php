@@ -100,7 +100,7 @@
                                             <br>
                                         </div>
                                         <button type="submit" name="edit" class="btn btn-info waves-effect waves-light m-r-10">Submit</button>
-                                        <a href="data" class="btn btn-inverse waves-effect waves-light">Cancel</a>
+                                        <a href="pendidikan/<?php echo $edit->pe_id;?>" class="btn btn-inverse waves-effect waves-light">Cancel</a>
                                         <button type="submit" name="delete" class="btn btn-danger waves-effect waves-light m-r-10 pull-right">Delete</button>
                                     </form>
                                 </div>
