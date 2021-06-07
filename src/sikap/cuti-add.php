@@ -1,38 +1,37 @@
+<?php
+    $stmt = $conn->prepare("SELECT pe_id,pe_nama from pegawai ORDER BY pe_nama ASC");
+    $stmt->execute();
+    $pegawai = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt = $conn->prepare("SELECT * from jenis_cuti ORDER BY id DESC");
+    $stmt->execute();
+    $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!-- ============================================================== -->
 <!-- Page Content -->
 <!-- ============================================================== -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="tambahkategori">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-body">
-            <div id="alert-tambahkategori" class="alert alert-success hidden" role="alert">
-                <strong>Berhasil!</strong>
+    <div class="modal-dialog" role="document">
+        <form id="form-kategoricuti" action='api' method="post">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="alert-success" class="alert alert-success" role="alert" style="display: none">
+                    <strong>Berhasil!</strong>
+                </div>
+                <div id="alert-danger" class="alert alert-danger" role="alert" style="display: none">
+                    <strong>Gagal!</strong>
+                </div>
+                <label>Kategori Cuti</label>
+                <input type="text" id="add-kategoricuti" name="add-kategoricuti" value="true" hidden>
+                <input id="kategori" type="text" name="kategori" class="form-control" value="" placeholder="Cuti Tahunan">
             </div>
-            <label>Kategori Cuti</label>
-            <input id="inputkategori" type="text" name="kategori" class="form-control" value="" placeholder="Cuti tahunan">
+            <div class="modal-footer">
+                <button id="btn-tutup" type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button id="btn-simpan" type="submit" class="btn btn-primary">Simpan</button>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a href="cuti-add"><button id="btn-return" type="button" class="btn btn-secondary hidden">Kembali</button></a>
-            <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            <button id="btn-tambahkategori" type="button" class="btn btn-primary">Simpan</button>
-          </div>
-        </div>
-  </div>
-</div>
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="statuspengajuan">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title">Berhasil!</h2>
-        </div>
-      <div class="modal-body">
-        Pengajuan cuti anda berhasil disimpan
-      </div>
-      <div class="modal-footer">
-        <a href="cuti"><button type="button" class="btn btn-primary">Kembali</button></a>
-      </div>
+        </form>
     </div>
-  </div>
 </div>
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -54,58 +53,55 @@
                     <h3 class="box-title m-b-0">Pengajuan Cuti</h3><br>
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <label>Kategori Cuti</label>
-                                        <div class="input-group" style="width:100%">
-                                            <select id="jenis_cuti" name="jenis_cuti" class="form-control">
-                                                <?php
-                                                $sql = "SELECT * FROM jenis_cuti ORDER BY id DESC";
-                                                $result = $conn->query($sql);
-                                                while ($row = $result->fetch()) {
-                                                    echo "<option value=" . $row['id'] . ">" . $row['value'] . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                            <button type="button" class="btn btn-link" aria-label="Left Align" style="padding-left: 0;" data-toggle="modal" data-target="#tambahkategori">tambah kategori</button>
-                                      </div>
+                                <form id="form-addcuti" class="form card-body" action="api" method="post">
+                                    <input type="text" id="add-cuti" name="add-cuti" value="true" hidden>
+                                    <div class="form-group">
+                                        <label>Pegawai</label>
+                                        <select class="form-control" id="pegawai" name="pegawai">
+                                            <?php foreach($pegawai as $row) { ?>
+                                                <option value="<?php echo $row['pe_id']; ?>"><?php echo $row['pe_nama']; ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <label>Mulai Cuti</label>
-                                        <div class="input-group" style="width: 100%;">
-                                            <input id="cuti_start" type="date" name="cuti_start" class="form-control" value="<?php echo date('Y-m-d'); ?>">
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select class="form-control" id="cuti_id" name="cuti_id">
+                                            <?php foreach($kategori as $row) { ?>
+                                                <option value="<?php echo $row['id']; ?>"><?php echo $row['cuti_val']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <button type="button" class="btn btn-link" aria-label="Left Align" style="padding-left: 0;" data-toggle="modal" data-target="#tambahkategori">Tambah Kategori</button>
                                     </div>
-                                    <div class="form-group col-sm-4">
-                                        <label>Durasi Cuti</label>
-                                        <div class="input-group">
-                                            <input id="durasi" type="number" name="durasi" class="form-control" value="0" placeholder="0">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Mulai</label>
+                                        <input type="date" class="form-control" id="mulai" name="mulai" value="<?php echo date('Y-m-d'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Berakhir</label>
+                                        <input type="date" class="form-control" id="berakhir" name="berakhir" value="<?php $tomorrow = new DateTime('tomorrow'); echo $tomorrow->format('Y-m-d') ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Durasi</label>
+                                        <div class="input-group mb-3">
+                                            <input type="number" class="form-control" id="durasi" name="durasi" value="1">
                                             <span class="input-group-addon">hari</span>
                                         </div>
                                     </div>
-                                    <div class="form-group col-sm-4">
-                                        <label>Akhir Cuti</label>
-                                        <div class="input-group" style="width: 100%;">
-                                            <input id="cuti_end" type="date" name="cuti_end" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Alamat</label>
+                                        <textarea rows="5" class="form-control" id="alamat" name="alamat" placeholder="Jl. Garuda Nomor 17"></textarea>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Alamat</label>
-                                        <textarea id="alamat" rows="5" name="alamat" class="form-control" value="" placeholder="Jl.Garuda No 17" style="min-width: 100%"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Keterangan</label>
-                                        <textarea id="keterangan" rows="5" name="keterangan" class="form-control" value="" placeholder="Keterangan tambahan jika ada" style="min-width: 100%"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">File Pendukung</label>
-                                    <input type="file" id="exampleInputFile">
-                                </div>                              
-                                <button id="btn-pengajuan" type="button" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
-                                <a href="cuti" class="btn btn-inverse waves-effect waves-light">Batal</a>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Keterangan</label>
+                                        <textarea rows="5" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan tambahan jika ada"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">File Pendukung</label>
+                                        <input type="file" id="filependukung" name="pendukung">
+                                    </div> 
+                                    <a href="cuti"><button type="button" class="btn btn-secondary">Cancel</button></a>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -141,46 +137,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <script>
-$( document ).ready(function() {
-    $("#btn-tambahkategori").click(function(){
-        $.post("cuti-add",
-          {
-            kategori: $("#inputkategori").val()
-          },
-        function(data, status){
-            $("#alert-tambahkategori").removeClass("hidden");
-            $("#btn-tambahkategori").prop("disabled", true);
-            $("#btn-close").addClass("hidden");
-            $("#btn-return").removeClass("hidden");
-        });
+$("#form-addcuti, #form-addizin").submit(function (e){
+    e.preventDefault();
+    var values = $(this).serialize();
+    $.ajax({
+        url: 'api',
+        type: 'POST',
+        data: values,
+        success: function(){
+            alert("Pengajuan Berhasil");
+        },
+        error: function(){
+            alert("Pengajuan Gagal");
+        }
     });
-    $("#btn-pengajuan").click(function(){
-        $.post("cuti-add",
-          {
-            jenis_cuti: $("#jenis_cuti").val(),
-            jenis_cuti_val: $("#jenis_cuti option:selected").text(),
-            durasi: $("#durasi").val(),
-            cuti_start: $("#cuti_start").val(),
-            cuti_end: $("#cuti_end").val(),
-            alamat: $("#alamat").val(),
-            keterangan: $("#keterangan").val()
-          },
-        function(data, status){
-            $("#statuspengajuan").modal('show');
-        });
+});
+
+$("#form-kategoricuti, #form-kategoriizin").submit(function (e){
+    e.preventDefault();
+    var values = $(this).serialize();
+    $.ajax({
+        url: 'api',
+        type: 'POST',
+        data: values,
+        success: function(data){
+            $("#alert-success").show();
+            $("#btn-simpan").prop("disabled", true);
+            $("#cuti_id, #izin_id").html(data);
+        },
+        error: function(){
+            $("#alert-danger").show();
+        }
     });
-    $("#cuti_start,#durasi").change(function(){
-        var end_date = addDays($("#cuti_start").val(),parseInt($("#durasi").val()));
-        result_date = end_date.getFullYear() + '-'
-             + ('0' + (end_date.getMonth()+1)).slice(-2) + '-'
-             + ('0' + end_date.getDate()).slice(-2);
-        $("#cuti_end").val(result_date);
-        // console.log(end_date.getDate()+'/'+(end_date.getMonth()+1)+'/'+end_date.getFullYear());
-    });
-    function addDays(date, days) {
+});
+
+$("#durasi").change(function(){
+    var end_date = addDays($("#mulai").val(),parseInt($("#durasi").val()));
+    $("#berakhir").val(formatDate(end_date));
+});
+$("#berakhir, #mulai").change(function(){
+    var start_date = new Date($("#mulai").val());
+    var end_date = new Date($("#berakhir").val());
+    var days = (end_date-start_date)/(1000*60*60*24);
+    $("#durasi").val(days);
+});
+
+function addDays(date, days) {
       var result = new Date(date);
       result.setDate(result.getDate() + days);
       return result;
-    }
-});
+}
+function formatDate(date) {
+    var result_date = date.getFullYear() + '-'
+         + ('0' + (date.getMonth()+1)).slice(-2) + '-'
+         + ('0' + date.getDate()).slice(-2);
+    return result_date;
+}
 </script>

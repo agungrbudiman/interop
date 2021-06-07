@@ -1,3 +1,8 @@
+<?php
+  $stmt = $conn->prepare("SELECT pe_nama,jenis_cuti.cuti_val, cuti.* FROM pegawai join cuti on pegawai.pe_id=cuti.pe_id join jenis_cuti on jenis_cuti.id=cuti.cuti_id ORDER BY cuti.id DESC");
+  $stmt->execute();
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!-- ============================================================== -->
 <!-- Page Content -->
 <!-- ============================================================== -->
@@ -25,6 +30,7 @@
                                 <table class="table table-bordered" id="table_id">
                                     <thead>
                                         <tr>
+                                            <th>Nama</th>
                                             <th>Jenis</th>
                                             <th>Saldo</th>
                                             <th>Durasi</th>
@@ -35,22 +41,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $sql = "SELECT * FROM cuti WHERE us_id=" . $_SESSION['id'];
-                                        $result = $conn->query($sql);
-                                        while ($row = $result->fetch()) {
-                                            // mengurangi operasi join tiap row
-                                            // $sql = "SELECT jenis_cuti.value FROM cuti JOIN jenis_cuti ON jenis_cuti.id = cuti.jenis_cuti WHERE jenis_cuti.id=" . $row['jenis_cuti'];
-                                            // echo "<tr> <td>" . $conn->query($sql)->fetch(PDO::FETCH_ASSOC)['value'] . "</td>" .
-                                                echo "<tr><td>" . $row['jenis_cuti_val'] . "</td>" .
-                                                "<td>" . $row['saldo'] . "</td>" .
-                                                "<td>" . $row['durasi'] . "</td>" .
-                                                "<td>" . $row['cuti_start'] . "</td>" .
-                                                "<td>" . $row['cuti_end'] . "</td>" .
-                                                "<td>" . $row['alamat'] . "</td>" .
-                                                "<td>" . $row['keterangan'] . "</td> </tr>";
-                                        }
-                                        ?>
+                                         <?php foreach($result as $row) { ?>
+                                          <tr>
+                                            <td><?php echo $row['pe_nama']; ?></td>
+                                            <td><?php echo $row['cuti_val']; ?></td>
+                                            <td><?php echo $row['saldo']; ?></td>
+                                            <td><?php echo $row['start']; ?></td>
+                                            <td><?php echo $row['end']; ?></td>
+                                            <td><?php echo $row['durasi']; ?></td>
+                                            <td><?php echo $row['alamat']; ?></td>
+                                            <td><?php echo $row['keterangan']; ?></td>
+                                          </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                     </div>
