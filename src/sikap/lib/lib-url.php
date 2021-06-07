@@ -43,6 +43,10 @@ if(isset($_GET['page'])){
 		case 'izin-add':
 			require_once "izin-add.php";
 			break;
+
+		case 'laporan':
+			require_once "laporan.php";
+			break;
 			
 		default:
 			require_once "index-content.php";
