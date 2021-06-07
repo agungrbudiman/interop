@@ -1,3 +1,8 @@
+<?php
+  $stmt = $conn->prepare("SELECT pe_nama,jenis_izin.izin_val, izin.* FROM pegawai join izin on pegawai.pe_id=izin.pe_id join jenis_izin on jenis_izin.id=izin.izin_id ORDER BY izin.id DESC");
+  $stmt->execute();
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!-- ============================================================== -->
 <!-- Page Content -->
 <!-- ============================================================== -->
@@ -10,7 +15,7 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index">Home</a></li>
-                    <li><a href="izin">Perizinan</a></li>
+                    <li><a href="cuti">Izin</a></li>
                     <li class="active">Data Izin</li>
                 </ol>
             </div>
@@ -25,6 +30,7 @@
                                 <table class="table table-bordered" id="table_id">
                                     <thead>
                                         <tr>
+                                            <th>Nama</th>
                                             <th>Jenis</th>
                                             <th>Durasi</th>
                                             <th>Mulai</th>
@@ -33,17 +39,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        $sql = "SELECT * FROM izin WHERE us_id=" . $_SESSION['id'];
-                                        $result = $conn->query($sql);
-                                        while ($row = $result->fetch()) {
-                                                echo "<tr><td>" . $row['jenis_izin_val'] . "</td>" .
-                                                "<td>" . $row['durasi'] . "</td>" .
-                                                "<td>" . $row['izin_start'] . "</td>" .
-                                                "<td>" . $row['izin_end'] . "</td>" .
-                                                "<td>" . $row['keterangan'] . "</td> </tr>";
-                                        }
-                                        ?>
+                                         <?php foreach($result as $row) { ?>
+                                          <tr>
+                                            <td><?php echo $row['pe_nama']; ?></td>
+                                            <td><?php echo $row['izin_val']; ?></td>
+                                            <td><?php echo $row['start']; ?></td>
+                                            <td><?php echo $row['end']; ?></td>
+                                            <td><?php echo $row['durasi']; ?></td>
+                                            <td><?php echo $row['keterangan']; ?></td>
+                                          </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                     </div>
