@@ -148,6 +148,7 @@
                                                     $query = $conn->query($sql);
                                                     while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                         if ($edit->pr_id == $data->pr_id) {
+                                                            $pr_id = $data->pr_id;
                                                             echo '
                                                             <option value='.$data->pr_id.' selected>'.$data->pr_nama.'</option>
                                                             ';
@@ -168,10 +169,11 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kabupaten" id="kabupaten">
                                                     <?php
-                                                        $sql = "SELECT*FROM kabupaten ORDER BY kb_nama ASC";
+                                                        $sql = "SELECT*FROM kabupaten WHERE pr_id ='" . $pr_id . "' ORDER BY kb_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kb_id == $data->kb_id) {
+                                                                $kb_id = $data->kb_id;
                                                                 echo '
                                                                 <option value='.$data->kb_id.' selected>'.$data->kb_nama.'</option>
                                                                 ';
@@ -192,10 +194,11 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kecamatan" id="kecamatan">
                                                     <?php
-                                                        $sql = "SELECT*FROM kecamatan LEFT JOIN pegawai USING(kc_id)";
+                                                        $sql = "SELECT*FROM kecamatan WHERE kb_id='" . $kb_id . "' ORDER BY kc_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kc_id == $data->kc_id) {
+                                                                $kc_id = $data->kc_id;
                                                                 echo '
                                                                 <option value='.$data->kc_id.' selected>'.$data->kc_nama.'</option>
                                                                 ';
@@ -216,7 +219,7 @@
                                             <div class="col-sm-10">          
                                                 <select class="form-control" name="kelurahan" id="kelurahan">
                                                     <?php
-                                                        $sql = "SELECT*FROM kelurahan LEFT JOIN pegawai USING(kl_id)";
+                                                        $sql = "SELECT*FROM kelurahan WHERE kc_id='" . $kc_id . "' ORDER BY kl_nama ASC";
                                                         $query = $conn->query($sql);
                                                         while ($data = $query->fetch(PDO::FETCH_OBJ)) {
                                                             if ($edit->kl_id == $data->kl_id) {
@@ -234,45 +237,7 @@
                                                 </select>
                                             </div>
                                             <br><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2">Kecamatan</label>
-                                            <div class="col-sm-10">          
-                                                <select class="form-control" name="kecamatan" id="kecamatan">
-                                                    <?php
-                                                        $sql = "SELECT*FROM kecamatan ORDER BY kc_nama ASC";
-                                                        $query = $conn->query($sql);
-                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
-                                                            if ($edit->kc_id == $data->kc_id) {
-                                                                echo '
-                                                                <option value='.$data->kc_id.' selected>'.$data->kc_nama.'</option>
-                                                                ';
-                                                            }
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <br><br>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-2">Kelurahan</label>
-                                            <div class="col-sm-10">          
-                                                <select class="form-control" name="kelurahan" id="kelurahan">
-                                                    <?php
-                                                        $sql = "SELECT*FROM kelurahan ORDER BY kl_nama ASC";
-                                                        $query = $conn->query($sql);
-                                                        while ($data = $query->fetch(PDO::FETCH_OBJ)) {
-                                                            if ($edit->kl_id == $data->kl_id) {
-                                                                echo '
-                                                                <option value='.$data->kl_id.' selected>'.$data->kl_nama.'</option>
-                                                                ';
-                                                            }  
-                                                        }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <br><br>
-                                        </div>
+                                        </div>                                       
                                         <div class="form-group">
                                             <label class="col-sm-2">Alamat</label>
                                             <div class="col-sm-10"><input type="text" name="alamat" class="form-control" value="<?php echo $edit->pe_alamat; ?>"></div>
@@ -300,19 +265,19 @@
         <script>
             $(document).ready(function () 
             {
-                $("#provinsi").blur(function () 
+                $("#provinsi").change(function () 
                 {
                     var id_prov = $(this).val();
-                    $.ajax({url: "alamat.php?id_prov="+id_prov}).done(function(data){$("#kabupaten").html(data);});
+                    $.ajax({url: "alamat.php?id_prov="+id_prov}).done(function(data){$("#kabupaten").html(data); $("#kabupaten").trigger("change")});
                 });
 
-                $("#kabupaten").blur(function () 
+                $("#kabupaten").change(function () 
                 {
                     var id_kabupaten = $(this).val();
-                    $.ajax({url: "alamat.php?id_kabupaten="+id_kabupaten}).done(function(data){$("#kecamatan").html(data);});
+                    $.ajax({url: "alamat.php?id_kabupaten="+id_kabupaten}).done(function(data){$("#kecamatan").html(data); $("#kecamatan").trigger("change")});
                 });
 
-                $("#kecamatan").blur(function () 
+                $("#kecamatan").change(function () 
                 {
                     var id_kec = $(this).val();
                     $.ajax({url: "alamat.php?id_kec="+id_kec}).done(function(data){$("#kelurahan").html(data);});
