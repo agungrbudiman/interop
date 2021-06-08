@@ -1,38 +1,37 @@
+<?php
+    $stmt = $conn->prepare("SELECT pe_id,pe_nama from pegawai ORDER BY pe_nama ASC");
+    $stmt->execute();
+    $pegawai = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    $stmt = $conn->prepare("SELECT * from jenis_izin ORDER BY id DESC");
+    $stmt->execute();
+    $kategori = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!-- ============================================================== -->
 <!-- Page Content -->
 <!-- ============================================================== -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="tambahkategori">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-body">
-            <div id="alert-tambahkategori" class="alert alert-success hidden" role="alert">
-                <strong>Berhasil!</strong>
+    <div class="modal-dialog" role="document">
+        <form id="form-kategoriizin" action='api' method="post">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="alert-success" class="alert alert-success" role="alert" style="display: none">
+                    <strong>Berhasil!</strong>
+                </div>
+                <div id="alert-danger" class="alert alert-danger" role="alert" style="display: none">
+                    <strong>Gagal!</strong>
+                </div>
+                <label>Kategori Izin</label>
+                <input type="text" id="add-kategoriizin" name="add-kategoriizin" value="true" hidden>
+                <input id="kategori" type="text" name="kategori" class="form-control" value="" placeholder="Izin Liburan">
             </div>
-            <label>Kategori Izin</label>
-            <input id="inputkategori" type="text" name="kategori" class="form-control" value="" placeholder="">
+            <div class="modal-footer">
+                <button id="btn-tutup" type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button id="btn-simpan" type="submit" class="btn btn-primary">Simpan</button>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a href="izin-add"><button id="btn-return" type="button" class="btn btn-secondary hidden">Kembali</button></a>
-            <button id="btn-close" type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-            <button id="btn-tambahkategori" type="button" class="btn btn-primary">Simpan</button>
-          </div>
-        </div>
-  </div>
-</div>
-<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" id="statuspengajuan">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title">Berhasil!</h2>
-        </div>
-      <div class="modal-body">
-        Pengajuan izin anda berhasil disimpan
-      </div>
-      <div class="modal-footer">
-        <a href="izin"><button type="button" class="btn btn-primary">Kembali</button></a>
-      </div>
+        </form>
     </div>
-  </div>
 </div>
 <div id="page-wrapper">
     <div class="container-fluid">
@@ -43,7 +42,7 @@
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index">Home</a></li>
-                    <li><a href="izin">Perizinan</a></li>
+                    <li><a href="izin">Izin</a></li>
                     <li class="active">Pengajuan Izin</li>
                 </ol>
             </div>
@@ -54,54 +53,55 @@
                     <h3 class="box-title m-b-0">Pengajuan Izin</h3><br>
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <label>Kategori Izin</label>
-                                        <div class="input-group" style="width:100%">
-                                            <select id="jenis_izin" name="jenis_izin" class="form-control">
-                                                <?php
-                                                $sql = "SELECT * FROM jenis_izin ORDER BY id DESC";
-                                                $result = $conn->query($sql);
-                                                while ($row = $result->fetch()) {
-                                                    echo "<option value=" . $row['id'] . ">" . $row['value'] . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                            <button type="button" class="btn btn-link" aria-label="Left Align" style="padding-left: 0;" data-toggle="modal" data-target="#tambahkategori">tambah kategori</button>
-                                      </div>
+                                <form id="form-addizin" class="form card-body" action="api" method="post">
+                                    <input type="text" id="add-izin" name="add-izin" value="true" hidden>
+                                    <div class="form-group">
+                                        <label>Pegawai</label>
+                                        <select class="form-control" id="pegawai" name="pegawai">
+                                            <?php foreach($pegawai as $row) { ?>
+                                                <option value="<?php echo $row['pe_id']; ?>"><?php echo $row['pe_nama']; ?></option>
+                                            <?php } ?>
+                                        </select>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-sm-4">
-                                        <label>Mulai Izin</label>
-                                        <div class="input-group" style="width: 100%;">
-                                            <input id="izin_start" type="date" name="izin_start" class="form-control" value="<?php echo date('Y-m-d'); ?>">
-                                        </div>
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select class="form-control" id="izin_id" name="izin_id">
+                                            <?php foreach($kategori as $row) { ?>
+                                                <option value="<?php echo $row['id']; ?>"><?php echo $row['izin_val']; ?></option>
+                                            <?php } ?>
+                                        </select>
+                                        <button type="button" class="btn btn-link" aria-label="Left Align" style="padding-left: 0;" data-toggle="modal" data-target="#tambahkategori">Tambah Kategori</button>
                                     </div>
-                                    <div class="form-group col-sm-4">
-                                        <label>Durasi Izin</label>
-                                        <div class="input-group">
-                                            <input id="durasi" type="number" name="durasi" class="form-control" value="0" placeholder="0">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Mulai</label>
+                                        <input type="date" class="form-control" id="mulai" name="mulai" value="<?php echo date('Y-m-d'); ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Berakhir</label>
+                                        <input type="date" class="form-control" id="berakhir" name="berakhir" value="<?php $tomorrow = new DateTime('tomorrow'); echo $tomorrow->format('Y-m-d') ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Durasi</label>
+                                        <div class="input-group mb-3">
+                                            <input type="number" class="form-control" id="durasi" name="durasi" value="1">
                                             <span class="input-group-addon">hari</span>
                                         </div>
                                     </div>
-                                    <div class="form-group col-sm-4">
-                                        <label>Akhir Izin</label>
-                                        <div class="input-group" style="width: 100%;">
-                                            <input id="izin_end" type="date" name="izin_end" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Alamat</label>
+                                        <textarea rows="5" class="form-control" id="alamat" name="alamat" placeholder="Jl. Garuda Nomor 17"></textarea>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Keterangan</label>
-                                        <textarea id="keterangan" rows="5" name="keterangan" class="form-control" value="" placeholder="Keterangan tambahan jika ada" style="min-width: 100%"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputFile">File Pendukung</label>
-                                    <input type="file" id="exampleInputFile">
-                                </div>                              
-                                <button id="btn-pengajuan" type="button" class="btn btn-success waves-effect waves-light m-r-10">Simpan</button>
-                                <a href="izin" class="btn btn-inverse waves-effect waves-light">Batal</a>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Keterangan</label>
+                                        <textarea rows="5" class="form-control" id="keterangan" name="keterangan" placeholder="Keterangan tambahan jika ada"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">File Pendukung</label>
+                                        <input type="file" id="filependukung" name="pendukung">
+                                    </div> 
+                                    <a href="izin"><button type="button" class="btn btn-secondary">Cancel</button></a>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
                         </div>
                     </div>
                 </div>
@@ -120,11 +120,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $durasi = $_POST['durasi'];
     $izin_start = $_POST['izin_start'];
     $izin_end = $_POST['izin_end'];
+    $alamat = $_POST['alamat'];
     $keterangan = $_POST['keterangan'];
     $kategori = $_POST['kategori'];
 
     if (empty($kategori)) {
-        $sql = "INSERT INTO izin VALUES('0','$us_id','$jenis_izin','$jenis_izin_val','$durasi','$izin_start','$izin_end','$keterangan')";
+        $sql = "INSERT INTO izin VALUES('0','$us_id','$jenis_izin','$jenis_izin_val','0','$durasi','$izin_start','$izin_end','$alamat','$keterangan')";
     }
     else {
         $sql = "INSERT INTO jenis_izin VALUES('0','$kategori')";
@@ -136,45 +137,60 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 <script>
-$( document ).ready(function() {
-    $("#btn-tambahkategori").click(function(){
-        $.post("izin-add",
-          {
-            kategori: $("#inputkategori").val()
-          },
-        function(data, status){
-            $("#alert-tambahkategori").removeClass("hidden");
-            $("#btn-tambahkategori").prop("disabled", true);
-            $("#btn-close").addClass("hidden");
-            $("#btn-return").removeClass("hidden");
-        });
+$("#form-addizin, #form-addizin").submit(function (e){
+    e.preventDefault();
+    var values = $(this).serialize();
+    $.ajax({
+        url: 'api',
+        type: 'POST',
+        data: values,
+        success: function(){
+            alert("Pengajuan Berhasil");
+        },
+        error: function(){
+            alert("Pengajuan Gagal");
+        }
     });
-    $("#btn-pengajuan").click(function(){
-        $.post("izin-add",
-          {
-            jenis_izin: $("#jenis_izin").val(),
-            jenis_izin_val: $("#jenis_izin option:selected").text(),
-            durasi: $("#durasi").val(),
-            izin_start: $("#izin_start").val(),
-            izin_end: $("#izin_end").val(),
-            keterangan: $("#keterangan").val()
-          },
-        function(data, status){
-            $("#statuspengajuan").modal('show');
-        });
+});
+
+$("#form-kategoriizin, #form-kategoriizin").submit(function (e){
+    e.preventDefault();
+    var values = $(this).serialize();
+    $.ajax({
+        url: 'api',
+        type: 'POST',
+        data: values,
+        success: function(data){
+            $("#alert-success").show();
+            $("#btn-simpan").prop("disabled", true);
+            $("#izin_id, #izin_id").html(data);
+        },
+        error: function(){
+            $("#alert-danger").show();
+        }
     });
-    $("#izin_start,#durasi").change(function(){
-        var end_date = addDays($("#izin_start").val(),parseInt($("#durasi").val()));
-        result_date = end_date.getFullYear() + '-'
-             + ('0' + (end_date.getMonth()+1)).slice(-2) + '-'
-             + ('0' + end_date.getDate()).slice(-2);
-        $("#izin_end").val(result_date);
-        // console.log(end_date.getDate()+'/'+(end_date.getMonth()+1)+'/'+end_date.getFullYear());
-    });
-    function addDays(date, days) {
+});
+
+$("#durasi").change(function(){
+    var end_date = addDays($("#mulai").val(),parseInt($("#durasi").val()));
+    $("#berakhir").val(formatDate(end_date));
+});
+$("#berakhir, #mulai").change(function(){
+    var start_date = new Date($("#mulai").val());
+    var end_date = new Date($("#berakhir").val());
+    var days = (end_date-start_date)/(1000*60*60*24);
+    $("#durasi").val(days);
+});
+
+function addDays(date, days) {
       var result = new Date(date);
       result.setDate(result.getDate() + days);
       return result;
-    }
-});
+}
+function formatDate(date) {
+    var result_date = date.getFullYear() + '-'
+         + ('0' + (date.getMonth()+1)).slice(-2) + '-'
+         + ('0' + date.getDate()).slice(-2);
+    return result_date;
+}
 </script>

@@ -1,3 +1,8 @@
+<?php
+  $stmt = $conn->prepare("SELECT pe_nama, kehadiran.* FROM kehadiran JOIN pegawai on kehadiran.pe_id=pegawai.pe_id ORDER BY kehadiran.id");
+  $stmt->execute();
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================test================================== -->
@@ -16,43 +21,12 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <?php 
-							
-							require_once(__DIR__.'/lib/config.php');
-							
-							$us_id = $_SESSION['id'];
-							
-							$sql = "SELECT * FROM kehadiran WHERE us_id='$us_id' ORDER BY id_kehadiran DESC";
-							$query = $conn->query($sql);
-							$check = $query->rowCount();
-							if ($check >= 1) 
-							{
-								$data = $query->fetch(PDO::FETCH_OBJ);
-							} 
-							else 
-							{
-							}
-
-
-                            if (isset($_POST['add'])) {
-                                
-                            }
-                            elseif (isset($_GET['id'])) {
-                                
-                            }
-                            elseif (isset($_POST['edit'])) {
-                                
-                            }
-                        ?>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
                         <div class="white-box">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="table_id">
                                     <thead>
                                         <tr>
+                                            <th>Nama</th>
                                             <th>Tanggal</th>
                                             <th>Masuk</th>
                                             <th>Keluar</th>
@@ -62,18 +36,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-									<?php while($check>0) { ?>
-										<tr>
-											<td><?php echo $data->tanggal; ?></td>
-											<td><?php echo $data->jam_masuk; ?></td>
-											<td><?php echo $data->jam_keluar; ?></td>
-											<td><?php echo $data->ishoma; ?></td>
-											<td><?php echo $data->kekurangan; ?></td>
-											<td><?php echo $data->keterangan; ?></td>
-										</tr>
-									<?php 
-										$check--;
-										} ?>
+									<?php foreach($result as $row) { ?>
+                                        <tr>
+                                            <td><?php echo $row['pe_nama']; ?></td>
+                                            <td><?php echo $row['tanggal']; ?></td>
+                                            <td><?php echo $row['jam_masuk']; ?></td>
+                                            <td><?php echo $row['jam_keluar']; ?></td>
+                                            <td><?php echo $row['ishoma']; ?></td>
+                                            <td><?php echo $row['kekurangan']; ?></td>
+                                            <td><?php echo $row['keterangan']; ?></td>
+                                        </tr>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

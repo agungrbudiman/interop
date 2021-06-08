@@ -21,6 +21,10 @@
             require_once 'reset.php';
             break;
 
+        case 'api':
+            require_once 'api.php';
+            break;
+
         default:
             require_once "lib/lib-session.php";
             require_once "index-base.php";
