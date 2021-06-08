@@ -1,8 +1,3 @@
-<?php
-  $stmt = $conn->prepare("SELECT pe_nama, kehadiran.* FROM kehadiran JOIN pegawai on kehadiran.pe_id=pegawai.pe_id ORDER BY kehadiran.id");
-  $stmt->execute();
-  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
         <!-- ============================================================== -->
         <!-- Page Content -->
         <!-- ============================test================================== -->
@@ -10,12 +5,12 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Kehadiran</h4>
+                        <h4 class="page-title">Laporan</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="index">Home</a></li>
-                            <li class="active">Kehadiran</li>
+                            <li class="active">Laporan</li>
                         </ol>
                     </div>
                 </div>
@@ -45,20 +40,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($result as $row) { ?>
+                                        <?php $pegawai = $conn->query("SELECT pegawai.pe_id, pegawai.pe_nama FROM pegawai");
+                                        while($row = $pegawai->fetch()) {
+                                          $kehadiran = $conn->query("SELECT count(*) as count FROM kehadiran where pe_id=" . $row['pe_id'])->fetch();
+                                          $izin = $conn->query("SELECT count(*) as count FROM izin where pe_id=" . $row['pe_id'])->fetch();
+                                          $cuti = $conn->query("SELECT count(*) as count FROM cuti where pe_id=" . $row['pe_id'])->fetch();
+                                        ?>
                                           <tr>
                                             <td><?php echo $row['pe_nama']; ?></td>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>3</td>
-                                            <td>4</td>
-                                            <td>5</td>  
-                                            <td>6</td>  
-                                            <td>7</td>  
-                                            <td>8</td>  
-                                            <td>9</td>  
-                                            <td>10</td>  
-                                            <td>11</td>  
+                                            <td><?php echo $kehadiran['count']; ?></td>
+                                            <td><?php echo $izin['count']; ?></td>
+                                            <td><?php echo $cuti['count']; ?></td>
+                                            <td>0</td>
+                                            <td>0</td>  
+                                            <td>0</td>  
+                                            <td>0</td>  
+                                            <td>0</td>  
+                                            <td>0</td>  
+                                            <td>0</td>  
+                                            <td>0</td>  
                                           </tr>
                                         <?php } ?>
                                     </tbody>
