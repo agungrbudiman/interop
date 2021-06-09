@@ -65,8 +65,11 @@
                             <a href="forgot" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot password?</a> </div>
                     </div>
                     <div class="form-group text-center m-t-20">
-                        <div class="col-xs-12">
+                        <div class="col-xs-6">
                             <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" type="submit" name="signin">Sign In</button>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="http://localhost/interop/sso?callback_url=http://localhost/interop/sikap/signin-check.php" <button class="btn btn-danger btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" type="button" name="signin">SSO</button></a>
                         </div>
                     </div>
                 </form>

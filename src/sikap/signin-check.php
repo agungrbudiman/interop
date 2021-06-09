@@ -2,8 +2,21 @@
   session_start();
   //define(LIB_DIR, './lib/');
   //require_once(LIB_DIR . 'config.php');
+
   
   require_once(__DIR__.'/lib/config.php');
+  
+  if (isset($_GET["token"])) {
+    $data = base64_decode($_GET["token"]);
+    $iv = substr($data, 0, 16);
+    $decrypted = openssl_decrypt(substr($data, 16), "AES-128-CBC", "secretkey", 0, $iv);
+    if ($decrypted != false) {
+      $_SESSION['us_username'] = "sso";
+      $_SESSION['id'] = "1";
+      header('location:'.$base_url);
+      exit();
+    }
+  }
 
   $username = mysqli_real_escape_string($conn, $_POST['username']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);

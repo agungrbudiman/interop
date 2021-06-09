@@ -27,7 +27,7 @@
                 ?>
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="images/user/<?php echo $data->us_photo;?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php echo $data->us_username;?> </b><span class="caret"></span> </a>
+                        <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="images/user/<?php echo $data->us_photo;?>" alt="user-img" width="36" class="img-circle"><b class="hidden-xs"><?php echo $_SESSION['us_username'];?> </b><span class="caret"></span> </a>
                         <ul class="dropdown-menu dropdown-user animated flipInY">
                             <li>
                                 <div class="dw-user-box">
