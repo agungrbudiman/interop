@@ -32,9 +32,9 @@
                                         <tr>
                                             <th>Nama</th>
                                             <th>Jenis</th>
-                                            <th>Durasi</th>
                                             <th>Mulai</th>
                                             <th>Berakhir</th>
+                                            <th>Durasi</th>
                                             <th>Keterangan</th>
                                         </tr>
                                     </thead>

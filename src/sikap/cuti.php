@@ -33,9 +33,9 @@
                                             <th>Nama</th>
                                             <th>Jenis</th>
                                             <th>Saldo</th>
-                                            <th>Durasi</th>
                                             <th>Mulai</th>
                                             <th>Berakhir</th>
+                                            <th>Durasi</th>
                                             <th>Alamat</th>
                                             <th>Keterangan</th>
                                         </tr>
