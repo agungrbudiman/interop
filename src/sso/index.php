@@ -4,16 +4,11 @@
     return isset($_SESSION['sso_username']) ? true : false;
   }
   if (logged_in() && isset($_GET['callback_url'])) {
-    $token = $_SESSION['sso_token'];
-    $callback_url = $_GET['callback_url'];
-    header('Location: ' . $callback_url . '?token=' . $token);
+    require_once 'token.php';
+    header('Location: ' . $_GET['callback_url'] . '?token=' . urlencode($token));
+    exit();
   }
-  else if (isset($_GET['callback_url'])) {
-    $callback_url = $_GET['callback_url'];
-  }
-  else {
-    $callback_url = 'http://localhost/myapp/sso';
-  }
+  $callback_url = isset($_GET['callback_url']) ? $_GET['callback_url'] : 'http://localhost/interop/sso';
 ?>
 <!DOCTYPE html>
 <html lang="en">

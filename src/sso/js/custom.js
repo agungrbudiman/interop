@@ -6,7 +6,7 @@ $('#formlogin').submit(function (e) {
 		type: 'POST',
 		data: values,
 		success: function(data){
-			window.location = data.callback_url + "?token=" + data.token;
+			window.location = data.callback_url + "?token=" + encodeURI(data.token);
 		},
 		error: function(){
 			$('#alertlogin').show();

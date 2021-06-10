@@ -7,10 +7,11 @@
   require_once(__DIR__.'/lib/config.php');
   
   if (isset($_GET["token"])) {
-    $data = base64_decode($_GET["token"]);
-    $iv = substr($data, 0, 16);
-    $decrypted = openssl_decrypt(substr($data, 16), "AES-128-CBC", "secretkey", 0, $iv);
-    if ($decrypted != false) {
+    $data = urldecode($_GET["token"]);
+    $decrypted = openssl_decrypt($data, "AES-128-CBC", "secretkey", 0, "0000000000000000");
+    echo $decrypted;
+    $time = substr($decrypted, 16);
+    if ($decrypted != false && time() < $time) {
       $_SESSION['us_username'] = "sso";
       $_SESSION['id'] = "1";
       header('location:'.$base_url);
