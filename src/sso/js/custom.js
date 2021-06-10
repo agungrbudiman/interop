@@ -13,3 +13,8 @@ $('#formlogin').submit(function (e) {
 		}
 	});
 });
+
+$('.alert').on('close.bs.alert', function (event) {
+    event.preventDefault();
+    $(this).fadeOut();
+});
