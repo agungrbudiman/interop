@@ -3,7 +3,8 @@
 session_start();
 
 //hapus session yang sudah dibuat
-session_destroy();
+unset($_SESSION['us_username']);
+unset($_SESSION['id']);
 
 //redirect ke halaman signin
 $id = 'success';
