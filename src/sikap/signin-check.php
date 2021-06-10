@@ -7,9 +7,8 @@
   require_once(__DIR__.'/lib/config.php');
   
   if (isset($_GET["token"])) {
-    $data = urldecode($_GET["token"]);
-    $decrypted = openssl_decrypt($data, "AES-128-CBC", "secretkey", 0, "0000000000000000");
-    echo $decrypted;
+    $token = $_GET["token"];
+    $decrypted = openssl_decrypt($token, "AES-128-CBC", "secretkey", 0, "0000000000000000");
     $time = substr($decrypted, 16);
     if ($decrypted != false && time() < $time) {
       $_SESSION['us_username'] = "sso";
