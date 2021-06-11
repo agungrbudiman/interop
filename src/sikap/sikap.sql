@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2021 at 04:49 AM
+-- Generation Time: Jun 11, 2021 at 03:10 AM
 -- Server version: 5.7.34
 -- PHP Version: 7.4.19
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `access_control` (
   `ac_id` int(11) NOT NULL,
   `ac_desc` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `access_control`
@@ -51,11 +51,20 @@ CREATE TABLE `cuti` (
   `cuti_id` int(11) NOT NULL,
   `saldo` varchar(3) NOT NULL,
   `durasi` smallint(3) NOT NULL,
-  `start` varchar(10) DEFAULT NULL,
-  `end` varchar(10) DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `end` date DEFAULT NULL,
   `alamat` text NOT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cuti`
+--
+
+INSERT INTO `cuti` (`id`, `pe_id`, `cuti_id`, `saldo`, `durasi`, `start`, `end`, `alamat`, `keterangan`) VALUES
+(2, 1, 23, '0', 1, '2021-06-19', '2021-06-20', '', ''),
+(3, 2, 5, '0', 1, '2021-06-08', '2021-06-09', '', ''),
+(4, 1, 2, '0', 1, '2021-06-08', '2021-06-09', '', '');
 
 -- --------------------------------------------------------
 
@@ -68,10 +77,17 @@ CREATE TABLE `izin` (
   `pe_id` int(11) NOT NULL,
   `izin_id` int(11) NOT NULL,
   `durasi` smallint(6) NOT NULL,
-  `start` varchar(10) DEFAULT NULL,
-  `end` varchar(10) DEFAULT NULL,
+  `start` date DEFAULT NULL,
+  `end` date DEFAULT NULL,
   `keterangan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `izin`
+--
+
+INSERT INTO `izin` (`id`, `pe_id`, `izin_id`, `durasi`, `start`, `end`, `keterangan`) VALUES
+(3, 1, 23, 5, '2021-06-07', '2021-06-12', '');
 
 -- --------------------------------------------------------
 
@@ -115,7 +131,9 @@ CREATE TABLE `jenis_izin` (
 
 INSERT INTO `jenis_izin` (`id`, `izin_val`) VALUES
 (1, 'Liburan'),
-(20, 'Kedukaan');
+(20, 'Kedukaan'),
+(23, 'Keluar Kota'),
+(24, 'Dalam Kota');
 
 -- --------------------------------------------------------
 
@@ -125,11 +143,9 @@ INSERT INTO `jenis_izin` (`id`, `izin_val`) VALUES
 
 CREATE TABLE `kehadiran` (
   `pe_id` int(100) NOT NULL,
-  `tanggal` varchar(100) NOT NULL,
-  `jam_masuk` varchar(100) NOT NULL,
-  `jam_keluar` varchar(100) NOT NULL,
-  `ishoma` varchar(100) NOT NULL,
-  `kekurangan` varchar(100) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time NOT NULL,
   `keterangan` varchar(100) NOT NULL,
   `id` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -138,9 +154,17 @@ CREATE TABLE `kehadiran` (
 -- Dumping data for table `kehadiran`
 --
 
-INSERT INTO `kehadiran` (`pe_id`, `tanggal`, `jam_masuk`, `jam_keluar`, `ishoma`, `kekurangan`, `keterangan`, `id`) VALUES
-(1, '01-06-2021', '07:30', '16:45', '01:00', '', 'Hadir', 1),
-(1, '05-06-2021', '07:30', '16:45', '01:00', '', 'Hadir', 2);
+INSERT INTO `kehadiran` (`pe_id`, `tanggal`, `jam_masuk`, `jam_keluar`, `keterangan`, `id`) VALUES
+(1, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 1),
+(2, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 2),
+(3, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 3),
+(4, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 4),
+(5, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 5),
+(1, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 6),
+(2, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 7),
+(3, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 8),
+(4, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 9),
+(5, '2021-06-07', '07:30:00', '16:00:00', 'Hadir', 10);
 
 -- --------------------------------------------------------
 
@@ -288,37 +312,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `access_control`
 --
 ALTER TABLE `access_control`
-  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `izin`
 --
 ALTER TABLE `izin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jenis_cuti`
 --
 ALTER TABLE `jenis_cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `jenis_izin`
 --
 ALTER TABLE `jenis_izin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `kehadiran`
 --
 ALTER TABLE `kehadiran`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -335,6 +359,12 @@ ALTER TABLE `user`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `access_control`
+--
+ALTER TABLE `access_control`
+  ADD CONSTRAINT `fk-access-user` FOREIGN KEY (`ac_id`) REFERENCES `user` (`us_id`);
 
 --
 -- Constraints for table `cuti`

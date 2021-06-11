@@ -30,8 +30,6 @@
                                             <th>Tanggal</th>
                                             <th>Masuk</th>
                                             <th>Keluar</th>
-                                            <th>Ishoma</th>
-                                            <th>Kekurangan</th>
 											<th>Keterangan</th>
                                         </tr>
                                     </thead>
@@ -42,8 +40,6 @@
                                             <td><?php echo $row['tanggal']; ?></td>
                                             <td><?php echo $row['jam_masuk']; ?></td>
                                             <td><?php echo $row['jam_keluar']; ?></td>
-                                            <td><?php echo $row['ishoma']; ?></td>
-                                            <td><?php echo $row['kekurangan']; ?></td>
                                             <td><?php echo $row['keterangan']; ?></td>
                                         </tr>
                                     <?php } ?>
