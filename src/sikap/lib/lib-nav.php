@@ -18,6 +18,7 @@
                     <li><a href="izin"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Perizinan</a></li>
                     <li><a href="cuti"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Cuti</a></li>
                     <li><a href="laporan"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Laporan</a></li>
+                    <li><a href="report.php"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Report</a></li>
                 </ul>
             </div>
         </div>
