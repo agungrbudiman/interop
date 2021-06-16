@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2021 at 05:18 AM
+-- Generation Time: Jun 16, 2021 at 09:01 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -37,7 +37,8 @@ CREATE TABLE `access_control` (
 --
 
 INSERT INTO `access_control` (`ac_id`, `ac_desc`) VALUES
-(1, 'Admin');
+(1, 'Admin'),
+(2, 'Pegawai');
 
 -- --------------------------------------------------------
 
@@ -66981,7 +66982,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`us_id`, `ac_id`, `us_username`, `us_password`, `us_photo`, `us_email`) VALUES
-(1, 1, 'admin', 'admin', 'admin.png', 'admin@gmail.com');
+(1, 1, 'Admin', 'admin', 'admin.png', 'admin@gmail.com'),
+(2, 2, 'Agung Bahtiar', 'agung', 'pegawai.png', 'agungbahtiar@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -67118,7 +67120,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `access_control`
 --
 ALTER TABLE `access_control`
-  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ac_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `agama`
@@ -67190,7 +67192,7 @@ ALTER TABLE `tingkat_pendidikan`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `us_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

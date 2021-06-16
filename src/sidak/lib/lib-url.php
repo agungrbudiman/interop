@@ -80,6 +80,10 @@
 			require_once "alamat.php";
 			break;
 
+		case 'perubahan':
+			require_once "perubahan.php";
+			break;
+
 		default:
 			require_once "index-content.php";
 			break;

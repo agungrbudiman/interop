@@ -35,7 +35,7 @@ body {
   color: #ffffff;
 }
 .navbar-header {
-  background: #2f323e;
+  background: #9ec9f6;
 }
 .navbar-top-links > li > a {
   color: #ffffff;
@@ -79,11 +79,11 @@ body {
 #side-menu > li > a.active {
   background: transperant;
   color: #54667a;
-  border-left: 3px solid #41b3f9;
+  border-left: 3px solid #9ec9f6;
   font-weight: 500;
 }
 #side-menu ul > li > a:hover {
-  color: #41b3f9;
+  color: #9ec9f6;
 }
 #side-menu ul > li > a.active {
   color: #54667a;
@@ -161,3 +161,22 @@ body {
 .panel-theme a:hover {
   color: #0791e6;
 }
+.analytics-info h3{
+  color: #fff;
+}
+.red-box{
+  background-color: #dc3545;
+}
+.yellow-box{
+  background-color: #ffc107;
+}
+.green-box{
+  background-color: #198754;
+}
+.blue-box{
+  background-color: #0d6efd;
+}
+.purple-box{
+  background-color: #6f42c1;
+}
+

@@ -21,7 +21,7 @@
     $_SESSION['id'] = $data->us_id;
     $_SESSION['us_username'] = $data->us_username;
     //redirect ke halaman index
-    header('location:'.$base_url);
+    header('location:'.$base_url.'index');
   } 
   else 
   {

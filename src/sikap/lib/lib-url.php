@@ -1,7 +1,7 @@
 <?php 
-
-if(isset($_GET['page'])){
-	$page = $_GET['page']; 
+	if(isset($_GET['page'])){
+		$page = $_GET['page']; 
+	}
 
 	switch ($page) {
 /*		case 'data':
@@ -51,9 +51,6 @@ if(isset($_GET['page'])){
 		default:
 			require_once "index-content.php";
 			break;
-		}		
-	}
-	else {
-		require_once "index-content.php";
-	}
+	}		
+
 ?>

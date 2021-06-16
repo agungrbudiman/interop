@@ -1,5 +1,5 @@
         <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header" style="background: #9ec9f6;">
+            <div class="navbar-header">
                 <div class="top-left-part">
                     <!-- Logo -->
                     <a class="logo" href="index">
