@@ -161,3 +161,21 @@ body {
 .panel-theme a:hover {
   color: #0791e6;
 }
+.analytics-info h3{
+  color: #fff;
+}
+.red-info{
+  background-color: #dc3545;
+}
+.yellow-info{
+  background-color: #ffc107;
+}
+.green-info{
+  background-color: #198754;
+}
+.blue-info{
+  background-color: #0d6efd;
+}
+.purple-info{
+  background-color: #6f42c1;
+}

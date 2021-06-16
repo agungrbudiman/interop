@@ -76,8 +76,8 @@
 			require_once "alamat.php";
 			break;
 
-		case 'alamat':
-			require_once "alamat.php";
+		case 'perubahan':
+			require_once "perubahan.php";
 			break;
 
 		default:

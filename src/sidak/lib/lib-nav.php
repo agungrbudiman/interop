@@ -12,7 +12,14 @@
                 ?>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;"><a href="index"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Home</a></li>
-                    <li><a href="data"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Data Pegawai</a></li>
+                    <?php
+                        if ($data->ac_id==1) {
+                            echo '<li><a href="data"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Data Pegawai</a></li>';
+                        }
+                        elseif ($data->ac_id==2) {
+                            echo '<li><a href="perubahan"><i class="fa fa-file-text-o fa-fw" aria-hidden="true"></i> Ajukan Perubahan</a></li>';
+                        } 
+                    ?>
                 </ul>
             </div>
         </div>
